@@ -33,6 +33,30 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
     end
   end
   # test create an object by type
+  def test_create_object_by_type
+    VCR.use_cassette('new_object_success') do
+      json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
+	
+	  result=CordraRestClient::DigitalObject.create("new_ds_test_01","Digital Specimen",json,{"username":"xxxxx", "password":"xxxxx"})
+
+	  #check that the result is saved
+	  assert_equal 200, result[:code]
+	  assert_equal "OK", result["message"]
+	end
+  end
+  
+  # test create an object by type, FAIL
+  def test_create_object_by_type_fails
+    VCR.use_cassette('new_object_fail') do
+      json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
+	
+	  result=CordraRestClient::DigitalObject.create("new_ds_test","Digital Specimen",json,{"username":"xxxxx", "password":"xxxxx"})
+	  #check that the duplicate is rejected
+	  assert_equal 409, result[:code]
+	  assert_equal "Object already exists: 20.5000.1025/new_ds_test", result["message"]
+	end
+  end
+  
   # test update an object by ID
   # test delete an object
   # test search for objects
@@ -42,14 +66,14 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
       assert_equal Hash, list_cdo.class
 	  
       # Check that fields are accessible
-      assert_equal list_cdo["pageNum"],       1
-	  assert_equal list_cdo["pageSize"],      10
-	  assert_equal list_cdo["size"],          24
+      assert_equal list_cdo["pageNum"], 1
+	  assert_equal list_cdo["pageSize"], 10
+	  assert_equal list_cdo["size"], 24
 	  assert_equal list_cdo["results"].class, Array
     end
   end
-  
   # test retrieves an object via the Handle System web proxy
   # test modify the ACLs for a specific object  
+  
 end
 

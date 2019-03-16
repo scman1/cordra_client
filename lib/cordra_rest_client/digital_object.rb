@@ -40,6 +40,24 @@ module CordraRestClient
     end
 	
     # create an object by type
+	def self.create(id, dso_type, dso_data, credentials)
+	  conn = Faraday.new(:url => API_URL)
+	  
+	  conn.basic_auth(credentials[:username], credentials[:password])
+	  
+      response = conn.post do |req|
+	    req.url "/objects/?type=#{dso_type}&suffix=#{id}"
+	    req.headers['Content-Type'] = 'text/json'
+	    req.body = dso_data.to_json
+	  end
+	  out = JSON.parse(response.body)
+	  out [:code] = response.status
+      if response.status == 200
+        out["message"] = "OK"	  
+	  end
+	  return out
+	end
+	
 	# update an object by ID
 	# delete an object
 	# search for objects

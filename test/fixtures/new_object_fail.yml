@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://nsidr.org:8080/objects/?suffix=new_ds_test&type=Digital%20Specimen
+    body:
+      encoding: UTF-8
+      string: '{"id":"","creator":"","midslevel":2,"scientificName":"newt","country":"uk","locality":"wales","decimalLatLong":[],"recordedBy":"abraham","collectionDate":"","catalogNumber":"002","otherCatalogNumbers":"00222","institutionCode":"CU","collectionCode":"CU0001","stableIdentifier":"SI0002","physicalSpecimenId":"none","Determinations":""}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Authorization:
+      - Basic YWJyYWhhbTpkc3Rlc3Q1Njc4
+      Content-Type:
+      - text/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Request-Id:
+      - 3d8de0fbaf24
+      Set-Cookie:
+      - Csrf-token=idea5j478h4ddddv3rsv2ggt4k;Path=/
+      - JSESSIONID=std8n4l76f0q1d5672q13c7iz;Path=/;HttpOnly
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '61'
+    body:
+      encoding: UTF-8
+      string: '{"message":"Object already exists: 20.5000.1025/new_ds_test"}'
+    http_version: 
+  recorded_at: Sat, 16 Mar 2019 19:35:18 GMT
+recorded_with: VCR 4.0.0
