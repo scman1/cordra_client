@@ -12,7 +12,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
     VCR.use_cassette('one_object') do
       cdo = CordraRestClient::DigitalObject.find("20.5000.1025/1a0beb212baaede1c10c")
       assert_equal CordraRestClient::DigitalObject, cdo.class
-
+	  
       # Check that fields are accessible
       assert_equal cdo.id,  "KS.191"
 	  assert_equal cdo.timestamp, "2018-12-20T11:31:45.658Z"
@@ -32,6 +32,24 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
       assert_equal cdo.determinations, "Yes"
     end
   end
+  # test create an object by type
+  # test update an object by ID
+  # test delete an object
+  # test search for objects
+  def test_search_for_objects
+    VCR.use_cassette('paged_objects_list') do
+      list_cdo = CordraRestClient::DigitalObject.search("Digital Specimen")
+      assert_equal Hash, list_cdo.class
+	  
+      # Check that fields are accessible
+      assert_equal list_cdo["pageNum"],       1
+	  assert_equal list_cdo["pageSize"],      10
+	  assert_equal list_cdo["size"],          24
+	  assert_equal list_cdo["results"].class, Array
+    end
+  end
   
+  # test retrieves an object via the Handle System web proxy
+  # test modify the ACLs for a specific object  
 end
 

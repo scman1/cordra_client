@@ -34,10 +34,7 @@ module CordraRestClient
 	
 	# retrieves an object by ID
     def self.find(id)
-	  puts("#{API_URL}/#{id}")
       response = Faraday.get("#{API_URL}/#{id}")
-	  puts(response.body)
-	  puts(JSON.parse(response.body))
       attributes = JSON.parse(response.body)
 	  DigitalObject.new(attributes)
     end
@@ -46,6 +43,10 @@ module CordraRestClient
 	# update an object by ID
 	# delete an object
 	# search for objects
+	def self.search(dso_type, pageNum = 1, pageSize =10)
+      response = Faraday.get("#{API_URL}/?query=type:\"#{dso_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}")
+      results = JSON.parse(response.body)	  
+	end
 	# retrieves an object via the Handle System web proxy
 	# modify the ACLs for a specific object
   end
