@@ -35,9 +35,11 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
   # test create an object by type
   def test_create_object_by_type
     VCR.use_cassette('new_object_success') do
+	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
+	  cred["uc_1"]
       json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
 	
-	  result=CordraRestClient::DigitalObject.create("new_ds_test_01","Digital Specimen",json,{"username":"xxxxx", "password":"xxxxx"})
+	  result=CordraRestClient::DigitalObject.create("new_ds_test_01","Digital Specimen",json, cred["uc_1"])
 
 	  #check that the result is saved
 	  assert_equal 200, result[:code]
@@ -48,9 +50,11 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
   # test create an object by type, FAIL
   def test_create_object_by_type_fails
     VCR.use_cassette('new_object_fail') do
+	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
+	  cred["uc_1"]
       json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
 	
-	  result=CordraRestClient::DigitalObject.create("new_ds_test","Digital Specimen",json,{"username":"xxxxx", "password":"xxxxx"})
+	  result=CordraRestClient::DigitalObject.create("new_ds_test","Digital Specimen",json, cred["uc_1"])
 	  #check that the duplicate is rejected
 	  assert_equal 409, result[:code]
 	  assert_equal "Object already exists: 20.5000.1025/new_ds_test", result["message"]
