@@ -9,7 +9,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
   
   # test retrieve object by ID
   def test_retrieve_object_by_id
-    VCR.use_cassette('one_object') do
+    VCR.use_cassette('retrieve_object_id_success') do
       cdo = CordraRestClient::DigitalObject.find("20.5000.1025/1a0beb212baaede1c10c")
       assert_equal CordraRestClient::DigitalObject, cdo.class
 	  
@@ -34,13 +34,12 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
   end
   # test create an object by type
   def test_create_object_by_type
-    VCR.use_cassette('new_object_success') do
+    VCR.use_cassette('create_object_success') do
 	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
-	  cred["uc_1"]
       json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
-	
-	  result=CordraRestClient::DigitalObject.create("new_ds_test_01","Digital Specimen",json, cred["uc_1"])
 
+	  result=CordraRestClient::DigitalObject.create("new_ds_test_03","Digital Specimen",json, cred["uc_1"])
+      
 	  #check that the result is saved
 	  assert_equal 200, result[:code]
 	  assert_equal "OK", result["message"]
@@ -49,9 +48,9 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
   
   # test create an object by type, FAIL
   def test_create_object_by_type_fails
-    VCR.use_cassette('new_object_fail') do
+    VCR.use_cassette('create_object_fail') do
 	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
-	  cred["uc_1"]
+
       json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
 	
 	  result=CordraRestClient::DigitalObject.create("new_ds_test","Digital Specimen",json, cred["uc_1"])
@@ -62,18 +61,33 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
   end
   
   # test update an object by ID
+    def test_update_object_by_ID
+    VCR.use_cassette('edit_object_success') do
+	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
+	  json = JSON.parse(File.read("test/fixtures/edit_specimen.json"))
+	  id = json["id"] 
+	  json["id"] = "" #id cannot be updated
+	  result=CordraRestClient::DigitalObject.update(id, json, cred["uc_1"])
+
+	  #check that the result is saved
+	  assert_equal 200, result[:code]
+	  assert_equal "OK", result["message"]
+	end
+  end
+  
   # test delete an object
+  
   # test search for objects
   def test_search_for_objects
-    VCR.use_cassette('paged_objects_list') do
+    VCR.use_cassette('search_objects_success') do
       list_cdo = CordraRestClient::DigitalObject.search("Digital Specimen")
       assert_equal Hash, list_cdo.class
 	  
       # Check that fields are accessible
-      assert_equal list_cdo["pageNum"], 1
-	  assert_equal list_cdo["pageSize"], 10
-	  assert_equal list_cdo["size"], 24
-	  assert_equal list_cdo["results"].class, Array
+      assert_equal 1, list_cdo["pageNum"]
+	  assert_equal 10, list_cdo["pageSize"]
+	  assert_equal 30, list_cdo["size"]
+	  assert_equal Array, list_cdo["results"].class
     end
   end
   # test retrieves an object via the Handle System web proxy

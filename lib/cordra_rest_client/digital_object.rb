@@ -42,8 +42,7 @@ module CordraRestClient
     # create an object by type
 	def self.create(id, dso_type, dso_data, credentials)
 	  conn = Faraday.new(:url => API_URL)
-	  
-	  conn.basic_auth(credentials[:username], credentials[:password])
+	  conn.basic_auth(credentials["username"], credentials["password"])
 	  
       response = conn.post do |req|
 	    req.url "/objects/?type=#{dso_type}&suffix=#{id}"
@@ -59,6 +58,24 @@ module CordraRestClient
 	end
 	
 	# update an object by ID
+	# ID must include prefix
+	def self.update(id, dso_data, credentials)
+	  conn = Faraday.new(:url => API_URL)
+
+	  conn.basic_auth(credentials["username"], credentials["password"])
+	  response = conn.put do |req|
+	    req.url "/objects/#{id}"
+	    req.headers['Content-Type'] = 'text/json'
+	    req.body = dso_data.to_json
+	  end
+	  out = JSON.parse(response.body)
+	  out [:code] = response.status
+      if response.status == 200
+        out["message"] = "OK"	  
+	  end
+	  return out  
+	end
+	
 	# delete an object
 	# search for objects
 	def self.search(dso_type, pageNum = 1, pageSize =10)

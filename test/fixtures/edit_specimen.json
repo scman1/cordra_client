@@ -1,0 +1,18 @@
+{
+  "id": "20.5000.1025/newspecimen03",
+  "midslevel": 2,
+  "scientificName": "Lissotriton vulgaris (Linnaeus, 1758)",
+  "commonName": "Smooth newt",
+  "country": "Netherlands",
+  "locality": "Zuid-Holland, Voorschoten",
+  "decimalLat/Long": [],
+  "recordedBy": "R. de Ruiter",
+  "collectionDate": "2008-09-02",
+  "catalogNumber": "RMNH.RENA.44084",
+  "otherCatalogNumbers": "",
+  "institutionCode": "RMNH",
+  "collectionCode": "Amphibia and Reptilia",
+  "stableIdentifier": "http://data.biodiversitydata.nl/naturalis/specimen/RMNH.RENA.38646",
+  "physicalSpecimenId": "RMNH.RENA.44084",
+  "identifier": "20.5000.1025/newspecimen03"
+}
