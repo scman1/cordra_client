@@ -61,7 +61,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
   end
   
   # test update an object by ID
-    def test_update_object_by_ID
+  def test_update_object_by_id
     VCR.use_cassette('edit_object_success') do
 	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
 	  json = JSON.parse(File.read("test/fixtures/edit_specimen.json"))
@@ -75,7 +75,18 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	end
   end
   
-  # test delete an object
+  # test delete an object by ID
+  def test_delete_object_by_id
+    VCR.use_cassette('delete_object_success') do
+	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
+	  id = "20.5000.1025/newspecimen04" 
+	  result=CordraRestClient::DigitalObject.delete(id, cred["uc_1"])
+
+	  #check that the result is saved
+	  assert_equal 200, result[:code]
+	  assert_equal "OK", result["message"]
+	end
+  end
   
   # test search for objects
   def test_search_for_objects

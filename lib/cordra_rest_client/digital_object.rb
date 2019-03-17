@@ -77,6 +77,20 @@ module CordraRestClient
 	end
 	
 	# delete an object
+	def self.delete(id, credentials)
+	  conn = Faraday.new(:url => API_URL)
+
+	  conn.basic_auth(credentials["username"], credentials["password"])
+	  response = conn.delete do |req|
+	    req.url "/objects/#{id}"
+	  end
+	  out = JSON.parse(response.body)
+	  out [:code] = response.status
+      if response.status == 200
+        out["message"] = "OK"	  
+	  end
+	  return out  
+	end
 	# search for objects
 	def self.search(dso_type, pageNum = 1, pageSize =10)
       response = Faraday.get("#{API_URL}/?query=type:\"#{dso_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}")
