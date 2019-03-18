@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://nsidr.org:8080/objects/20.5000.1025/B100003484
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Request-Id:
+      - 828c40ab414b
+      X-Permission:
+      - READ
+      Content-Type:
+      - application/json;charset=UTF-8
+      Location:
+      - "/objects/20.5000.1025/B100003484"
+      X-Schema:
+      - Digital Specimen
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"20.5000.1025/B100003484","creationdatetime":"2019-01-25T14:41:01.988Z","creator":"20.5000.1025/60c6d277a8bd81de7fdd","midslevel":2,"scientificName":"Agathis
+        palmerstonii (F.Muell.) F.M.Bailey","commonName":"--","country":"Australia","locality":"Queensland","recordedBy":"L.
+        J. Brass 2421","collectionDate":"1932-04-08","catalogNumber":"B 10 0003484","otherCatalogNumbers":"2421","institutionCode":"B","collectionCode":"Australia:
+        Queensland","stableIdentifier":"http://herbarium.bgbm.org/object/B100003484","physicalSpecimenId":"B
+        10 0003484","Determinations":"Yes","catOfLifeReference":"http://www.catalogueoflife.org/col/details/species/id/2dabb88156621856eede45d071d76f13/synonym/e082fe585f089db1d1c5ad170f89a25d","imageID":"206596","availableImages":["http://ww2.bgbm.org/Herbarium/specimen.cfm?idThumb=206596&SpecimenPK=4699&Loan=1&Flash=True&SpecimenSequenz=1","https://doi.org/10.5281/zenodo.1479085"],"bhlPages":["https://www.biodiversitylibrary.org/page/34929050#page/71/mode/1up","https://www.biodiversitylibrary.org/page/34928490#page/227/mode/1up","https://www.biodiversitylibrary.org/page/8897439#page/419/mode/1up"]}'
+    http_version: 
+  recorded_at: Mon, 18 Mar 2019 12:29:01 GMT
+recorded_with: VCR 4.0.0

@@ -26,10 +26,10 @@ http_interactions:
       message: OK
     headers:
       Request-Id:
-      - 86bc333f9a26
+      - 754b90cb64fe
       Set-Cookie:
-      - Csrf-token=s716ntji8dm5fm20dcdv6rpmre;Path=/
-      - JSESSIONID=6tmjmxjavlp1wr2loiz5a6d7;Path=/;HttpOnly
+      - Csrf-token=bhltg22pbefmmaoi0vqmhilr06;Path=/
+      - JSESSIONID=1owbo17629rnzqz549zc41csy;Path=/;HttpOnly
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       X-Permission:
@@ -49,5 +49,5 @@ http_interactions:
         Voorschoten","decimalLat/Long":[],"recordedBy":"R. de Ruiter","collectionDate":"2008-09-02","catalogNumber":"RMNH.RENA.44084","otherCatalogNumbers":"","institutionCode":"RMNH","collectionCode":"Amphibia
         and Reptilia","stableIdentifier":"http://data.biodiversitydata.nl/naturalis/specimen/RMNH.RENA.38646","physicalSpecimenId":"RMNH.RENA.44084","identifier":"20.5000.1025/newspecimen03"}'
     http_version: 
-  recorded_at: Sun, 17 Mar 2019 12:41:01 GMT
+  recorded_at: Mon, 18 Mar 2019 12:29:06 GMT
 recorded_with: VCR 4.0.0

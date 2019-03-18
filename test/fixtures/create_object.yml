@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://nsidr.org:8080/objects/?suffix=1a0beb212baaede1c10c&type=Digital%20Specimen
+    uri: http://nsidr.org:8080/objects/?suffix=RMNH.RENA.38646&type=Digital%20Specimen
     body:
       encoding: UTF-8
       string: '{"id":"","creator":"","midslevel":2,"scientificName":"Lissotriton vulgaris
@@ -22,23 +22,30 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 409
-      message: Conflict
+      code: 200
+      message: OK
     headers:
       Request-Id:
-      - 4be48edba94f
+      - 1ea95662e80c
       Set-Cookie:
-      - Csrf-token=kfg6t2l2k061vq5utc4rt0n0qn;Path=/
-      - JSESSIONID=16sq5jfz7349fyorm08j08zpr;Path=/;HttpOnly
+      - Csrf-token=v5gljl1s10j63nbjo66asg487h;Path=/
+      - JSESSIONID=aumcedtu6bcjo63gsxhr93ye;Path=/;HttpOnly
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Content-Type:
       - application/json;charset=UTF-8
+      Location:
+      - "/objects/20.5000.1025/RMNH.RENA.38646"
+      X-Schema:
+      - Digital Specimen
       Content-Length:
-      - '70'
+      - '619'
     body:
       encoding: UTF-8
-      string: '{"message":"Object already exists: 20.5000.1025/1a0beb212baaede1c10c"}'
+      string: '{"id":"20.5000.1025/RMNH.RENA.38646","creator":"20.5000.1025/1517d545cc11283e2360","midslevel":2,"scientificName":"Lissotriton
+        vulgaris (Linnaeus, 1758)","commonName":"Smooth newt","country":"Netherlands","locality":"Zuid-Holland,
+        Voorschoten","decimalLat/Long":[],"recordedBy":"R. de Ruiter","collectionDate":"2008-09-02","catalogNumber":"RMNH.RENA.38646","otherCatalogNumbers":"","institutionCode":"RMNH","collectionCode":"Amphibia
+        and Reptilia","stableIdentifier":"http://data.biodiversitydata.nl/naturalis/specimen/RMNH.RENA.38646","physicalSpecimenId":"RMNH.RENA.38646","identifier":"20.5000.1025/RMNH.RENA.38646"}'
     http_version: 
-  recorded_at: Mon, 18 Mar 2019 12:29:06 GMT
+  recorded_at: Mon, 18 Mar 2019 12:29:04 GMT
 recorded_with: VCR 4.0.0

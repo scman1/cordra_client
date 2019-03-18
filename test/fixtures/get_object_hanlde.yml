@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/B100003484
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: ''
+    headers:
+      Location:
+      - http://131.251.172.30:8080/#objects/20.5000.1025/B100003484
+      Expires:
+      - Tue, 19 Mar 2019 12:29:08 GMT
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '203'
+      Date:
+      - Mon, 18 Mar 2019 12:29:07 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        <html><head><title>Handle Redirect</title></head>
+        <body><a href="http://131.251.172.30:8080/#objects/20.5000.1025/B100003484">http://131.251.172.30:8080/#objects/20.5000.1025/B100003484</a></body></html>
+    http_version: 
+  recorded_at: Mon, 18 Mar 2019 12:29:07 GMT
+recorded_with: VCR 4.0.0

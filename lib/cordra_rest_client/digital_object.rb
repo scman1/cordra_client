@@ -2,7 +2,8 @@
 require 'faraday'
 require 'json'
 
-API_URL = "http://nsidr.org:8080/objects"
+API_URL = "http://nsidr.org:8080/"
+API_HANDLE = "http://hdl.handle.net/"
 
 module CordraRestClient
   class DigitalObject
@@ -34,7 +35,7 @@ module CordraRestClient
 	
 	# retrieves an object by ID
     def self.find(id)
-      response = Faraday.get("#{API_URL}/#{id}")
+      response = Faraday.get("#{API_URL}objects/#{id}")
       attributes = JSON.parse(response.body)
 	  DigitalObject.new(attributes)
     end
@@ -93,11 +94,35 @@ module CordraRestClient
 	end
 	# search for objects
 	def self.search(dso_type, pageNum = 1, pageSize =10)
-      response = Faraday.get("#{API_URL}/?query=type:\"#{dso_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}")
+      response = Faraday.get("#{API_URL}objects/?query=type:\"#{dso_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}")
       results = JSON.parse(response.body)	  
 	end
 	# retrieves an object via the Handle System web proxy
-	# modify the ACLs for a specific object
+	def self.handle_find(id)
+      response = Faraday.get("#{API_HANDLE}#{id}")
+	  #the body contains the re-direction
+      response.body
+    end
+	# modify the ACLs for an object
+	# allows modifying the read/write persmissions of a specific object
+	# id: id of the object to set persmissions on
+	# rw_data: two arrays containing ids of users getting r/w persmissions
+	def self.set_premissions(id,rw_data, credentials)
+	  conn = Faraday.new(:url => API_URL)
+
+	  conn.basic_auth(credentials["username"], credentials["password"])
+	  response = conn.put do |req|
+	    req.url "/acls/#{id}"
+	    req.headers['Content-Type'] = 'text/json'
+	    req.body = rw_data.to_json
+	  end
+	  out = JSON.parse(response.body)
+	  out [:code] = response.status
+      if response.status == 200
+        out["message"] = "OK"	  
+	  end
+	  return out
+	end
   end
 end
 
