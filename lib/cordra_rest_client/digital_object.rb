@@ -7,7 +7,7 @@ API_HANDLE = "http://hdl.handle.net/"
 
 module CordraRestClient
   class DigitalObject
-    #attributes
+    # some of the attributes for digital specimen objects
     attr_reader :id, :timestamp, :creator, :scientificName, :country, :locality,
     	:decimalLatLong, :recordedBy, :collectionDate, :catalogNumber, 
 		:otherCatalogNumbers, :collectionCode, :institutionCode, :stableIdentifier, 
@@ -34,6 +34,7 @@ module CordraRestClient
     end
 	
 	# retrieves an object by ID
+	# id: id of the object to retrieve 
     def self.find(id)
       response = Faraday.get("#{API_URL}objects/#{id}")
       attributes = JSON.parse(response.body)
@@ -41,14 +42,18 @@ module CordraRestClient
     end
 	
     # create an object by type
-	def self.create(id, dso_type, dso_data, credentials)
+	# id: suffix of the object to create 
+	# do_type: type of digital object
+	# do_data: data of the digital object
+	# credentials: username and password for authentication
+	def self.create(id, do_type, do_data, credentials)
 	  conn = Faraday.new(:url => API_URL)
 	  conn.basic_auth(credentials["username"], credentials["password"])
 	  
       response = conn.post do |req|
-	    req.url "/objects/?type=#{dso_type}&suffix=#{id}"
+	    req.url "/objects/?type=#{do_type}&suffix=#{id}"
 	    req.headers['Content-Type'] = 'text/json'
-	    req.body = dso_data.to_json
+	    req.body = do_data.to_json
 	  end
 	  out = JSON.parse(response.body)
 	  out [:code] = response.status
@@ -59,15 +64,17 @@ module CordraRestClient
 	end
 	
 	# update an object by ID
-	# ID must include prefix
-	def self.update(id, dso_data, credentials)
+	# id: full id (prefix and suffix) of the object to update 
+	# do_data: data of the digital object
+	# credentials: username and password for authentication
+	def self.update(id, do_data, credentials)
 	  conn = Faraday.new(:url => API_URL)
 
 	  conn.basic_auth(credentials["username"], credentials["password"])
 	  response = conn.put do |req|
 	    req.url "/objects/#{id}"
 	    req.headers['Content-Type'] = 'text/json'
-	    req.body = dso_data.to_json
+	    req.body = do_data.to_json
 	  end
 	  out = JSON.parse(response.body)
 	  out [:code] = response.status
@@ -78,6 +85,8 @@ module CordraRestClient
 	end
 	
 	# delete an object
+	# id: full id (prefix and suffix) of the object to delete 
+	# credentials: username and password for authentication
 	def self.delete(id, credentials)
 	  conn = Faraday.new(:url => API_URL)
 
@@ -92,17 +101,24 @@ module CordraRestClient
 	  end
 	  return out  
 	end
+	
 	# search for objects
-	def self.search(dso_type, pageNum = 1, pageSize =10)
-      response = Faraday.get("#{API_URL}objects/?query=type:\"#{dso_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}")
+	# do_data: data of the digital object
+	# pageNum: page number to retrieve
+	# pageSize: number of records per page to retrieve
+	def self.search(do_type, pageNum = 1, pageSize =10)
+      response = Faraday.get("#{API_URL}objects/?query=type:\"#{do_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}")
       results = JSON.parse(response.body)	  
 	end
+	
 	# retrieves an object via the Handle System web proxy
+    # id: full id (prefix and suffix) of the object to look-up 	
 	def self.handle_find(id)
       response = Faraday.get("#{API_HANDLE}#{id}")
 	  #the body contains the re-direction
       response.body
     end
+	
 	# modify the ACLs for an object
 	# allows modifying the read/write persmissions of a specific object
 	# id: id of the object to set persmissions on
