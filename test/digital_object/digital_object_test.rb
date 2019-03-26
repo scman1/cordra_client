@@ -112,7 +112,8 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	  assert_match /B100003484/, redirection
     end
   end  
-  # test modify the ACLs (permissions) for a specific object  
+  # test modify the ACLs (permissions) for a specific object 
+  # Not working, could be because of limits of test user credentials
   def test_modify_object_permissions
     VCR.use_cassette('modify_permissions') do
 	  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
