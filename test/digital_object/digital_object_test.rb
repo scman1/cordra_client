@@ -32,6 +32,16 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
       assert_equal "Yes", cdo.determinations
     end
   end
+  # test retrieve object creator, variant of  retrieve object by ID
+  def test_retrieve_object_creator
+    VCR.use_cassette('retrieve_object_attribute') do
+	do_creator = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","creator")
+        # Check object creator
+        assert_equal "20.5000.1025/60c6d277a8bd81de7fdd", do_creator
+    end
+  end
+  # pending testing of get payload, other attributes
+  
   # test create an object by type
   def test_create_object_by_type
     VCR.use_cassette('create_object') do

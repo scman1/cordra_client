@@ -33,35 +33,43 @@ module CordraRestClient
 	  @determinations = attributes["Determinations"]
     end
 	
-	# retrieves an object by ID
-	# id: id of the object to retrieve 
+    # retrieves an object by ID
+    # id: id of the object to retrieve 
     def self.find(id)
-      response = Faraday.get("#{API_URL}objects/#{id}")
-      attributes = JSON.parse(response.body)
-	  DigitalObject.new(attributes)
+        response = Faraday.get("#{API_URL}objects/#{id}")
+        attributes = JSON.parse(response.body)
+	DigitalObject.new(attributes)
     end
-	
+  
+    # retrieves an objects attribute by object ID
+    # id: id of the object to retrieve 
+    # field: name of attribute to retrieve
+    def self.get_do_field(id, field)
+	response = Faraday.get("#{API_URL}objects/#{id}?jsonPointer=/#{field}")
+	attributes = JSON.parse(response.body)
+    end
+
     # create an object by type
-	# id: suffix of the object to create 
+        # id: suffix of the object to create 
 	# do_type: type of digital object
 	# do_data: data of the digital object
 	# credentials: username and password for authentication
-	def self.create(id, do_type, do_data, credentials)
-	  conn = Faraday.new(:url => API_URL)
-	  conn.basic_auth(credentials["username"], credentials["password"])
+    def self.create(id, do_type, do_data, credentials)
+        conn = Faraday.new(:url => API_URL)
+	conn.basic_auth(credentials["username"], credentials["password"])
 	  
-      response = conn.post do |req|
-	    req.url "/objects/?type=#{do_type}&suffix=#{id}"
-	    req.headers['Content-Type'] = 'text/json'
-	    req.body = do_data.to_json
-	  end
-	  out = JSON.parse(response.body)
-	  out [:code] = response.status
-      if response.status == 200
-        out["message"] = "OK"	  
-	  end
-	  return out
+        response = conn.post do |req|
+		req.url "/objects/?type=#{do_type}&suffix=#{id}"
+	        req.headers['Content-Type'] = 'text/json'
+	        req.body = do_data.to_json
 	end
+	out = JSON.parse(response.body)
+	out [:code] = response.status
+        if response.status == 200
+                out["message"] = "OK"	  
+	end
+	return out
+    end
 	
 	# update an object by ID
 	# id: full id (prefix and suffix) of the object to update 
