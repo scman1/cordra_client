@@ -105,14 +105,14 @@ module CordraRestClient
 		end
 		
 		# retrieves an object via the Handle System web proxy
-	    # id: full id (prefix and suffix) of the object to look-up 	
+	        # id: full id (prefix and suffix) of the object to look-up 	
 		def self.handle_find(id)
 			response = Faraday.get("#{API_HANDLE}#{id}")
 			#the body contains the re-direction
 		       response.body
 		end
 		
-		# modify the ACLs for an object
+		# modify object ACL
 		# allows modifying the read/write persmissions of a specific object
 		# id: id of the object to set persmissions on
 		# rw_data: two arrays containing ids of users getting r/w persmissions
@@ -128,10 +128,27 @@ module CordraRestClient
 			out = JSON.parse(response.body)
 			out [:code] = response.status
 			if response.status == 200
-				out["message"] = "OK"	  
+				out["message"] = "OK"
 			end
 			return out
 		end
+		
+		# get object ACL
+		# allows modifying the read/write persmissions of a specific object
+		# id: id of the object to set persmissions on
+		# rw_data: two arrays containing ids of users getting r/w persmissions
+		def self.get_acl(id, rw_data, credentials)
+			conn= Faraday.new(:url => API_URL)
+			conn.basic_auth(credentials["username"], credentials["password"])
+			response = conn.get do |req|
+				req.url "/acls/#{id}"
+				req.headers['Content-Type'] = 'text/json'
+				#~ req.body = rw_data.to_json
+			end
+			out = JSON.parse(response.body)
+			return out
+		end
+		
 		# retrieve a schema
 		# schema_type: the schema to retrieve, if empty returns all schemas
 		def self.get_schema(schema_type="")

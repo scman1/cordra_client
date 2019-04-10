@@ -7,7 +7,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		assert CordraRestClient::DigitalObject
 	end
 	  
-	# test retrieve object by ID
+	# 1 test retrieve object by ID
 	def test_retrieve_object_by_id
 		VCR.use_cassette('retrieve_object_id') do
 			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
@@ -16,13 +16,9 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			# Check that fields are accessible
 			assert_equal "20.5000.1025/B100003484", cdo.id
 			assert_equal "Digital Specimen", cdo.type
-			puts("\n*********************************************")
-			puts(cdo.content)
-			puts(cdo.metadata)
-			puts("\n*********************************************")
 		end
 	  end
-	  # test retrieve object creator, variant of  retrieve object by ID
+	  # 2 test retrieve object creator, variant of  retrieve object by ID
 	def test_retrieve_object_creator
 		VCR.use_cassette('retrieve_object_attribute') do
 			do_creator = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","creator")
@@ -32,7 +28,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	 end
 	  # pending testing of get payload, other attributes
 	  
-	  # test create an object by type
+	  # 3 test create an object by type
 	  def test_create_object_by_type
 	    VCR.use_cassette('create_object') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
@@ -46,7 +42,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		end
 	  end
 	  
-	  # test create an object by type, FAIL
+	  # 4 test create an object by type, FAIL
 	  def test_create_object_by_type_fail
 	    VCR.use_cassette('create_object_fail') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
@@ -60,7 +56,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		end
 	  end
 	  
-	  # test update an object by ID
+	  # 5 test update an object by ID
 	  def test_update_object_by_id
 	    VCR.use_cassette('edit_object') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
@@ -75,7 +71,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		end
 	  end
 	  
-	  # test delete an object by ID
+	  # 6 test delete an object by ID
 	  def test_delete_object_by_id
 	    VCR.use_cassette('delete_object') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
@@ -88,7 +84,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		end
 	  end
 	  
-	  # test search for objects
+	  # 7 test search for objects
 	  def test_search_for_objects
 	    VCR.use_cassette('search_objects') do
 	      list_cdo = CordraRestClient::DigitalObject.search("Digital Specimen")
@@ -101,7 +97,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		  assert_equal Array, list_cdo["results"].class
 	    end
 	  end
-	  # test retrieves an object via the Handle System web proxy
+	  # 8 test retrieves an object via the Handle System web proxy
 	  def test_retrieve_objects_via_handle
 	    VCR.use_cassette('get_object_hanlde') do
 	      redirection = CordraRestClient::DigitalObject.handle_find("20.5000.1025/B100003484")
@@ -113,27 +109,42 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	    end
 	end  
     
-	# test modify the ACLs (permissions) for a specific object 
-	# Not working, could be because of limits of test user credentials
-	def test_modify_object_permissions
-		VCR.use_cassette('modify_permissions') do
+	# 9 test modify object ACL
+
+	def test_object_acl_set
+		VCR.use_cassette('object_acl_set') do
 			cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
 			json = JSON.parse(File.read("test/fixtures/acl_list.json"))
 			id = "20.5000.1025/RMNH.RENA.44084" 
 			result=CordraRestClient::DigitalObject.set_premissions(id, json, cred["uc_1"])
-
 			#check that the result is saved
 			assert_equal 200, result[:code]
 			assert_equal "OK", result["message"]
+			assert_equal 4, result.length
+			assert_equal 1, result["readers"].length
+			assert_equal '20.5000.1025/1517d545cc11283e2360', result["readers"][0]
 		end
 	end
-
-	# test get object schema
+        # 10 test get object ACL
+	def test_object_acl_get
+		VCR.use_cassette('object_acl_get') do
+			cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
+			json = JSON.parse(File.read("test/fixtures/acl_list.json"))
+			id = "20.5000.1025/RMNH.RENA.38646" 
+			result=CordraRestClient::DigitalObject.get_acl(id, json, cred["uc_1"])
+			
+			#check result returned
+			assert_equal 2, result.length
+			assert_equal 2, result["readers"].length
+			assert_equal '20.5000.1025/1517d545cc11283e2360', result["readers"][0]
+			assert_equal '20.5000.1025/1517d545cc11283e2360', result["writers"][0]
+		end
+	end
+	
+	# 11. test get object schema
 	# 
 	def test_modify_object_permissions
 		VCR.use_cassette('get_schema') do
-			cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
-			json = JSON.parse(File.read("test/fixtures/acl_list.json"))
 			schema_type="Digital%20Specimen"
 			result=CordraRestClient::DigitalObject.get_schema(schema_type)
 			do_schema = JSON.parse(result.body)

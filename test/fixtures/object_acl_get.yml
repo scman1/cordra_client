@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://nsidr.org:8080/acls/20.5000.1025/RMNH.RENA.38646
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Authorization:
+      - Basic YWJyYWhhbTpkc3Rlc3Q1Njc4
+      Content-Type:
+      - text/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Request-Id:
+      - e6d739cee9b2
+      Set-Cookie:
+      - Csrf-token=fo3djube35ept3a74d8377b285;Path=/
+      - JSESSIONID=j8cbrq2hlxsypehx6z23k7ui;Path=/;HttpOnly
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Permission:
+      - WRITE
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"readers":["20.5000.1025/1517d545cc11283e2360","20.5000.1025/60c6d277a8bd81de7fdd"],"writers":["20.5000.1025/1517d545cc11283e2360","20.5000.1025/60c6d277a8bd81de7fdd"]}'
+    http_version: 
+  recorded_at: Wed, 10 Apr 2019 15:21:51 GMT
+recorded_with: VCR 4.0.0
