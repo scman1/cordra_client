@@ -10,7 +10,7 @@ http_interactions:
       User-Agent:
       - Faraday v0.15.4
       Authorization:
-      - Basic YWJyYWhhbTpkc3Rlc3Q1Njc4
+      - Basic ABCdEFghiJklm1Pqr2T3Vwx4
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
