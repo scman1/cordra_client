@@ -7,4 +7,4 @@
 /pkg/
 /spec/reports/
 /tmp/
-test/fixtures/credentials.yml
+test/fixtures/credential.yml

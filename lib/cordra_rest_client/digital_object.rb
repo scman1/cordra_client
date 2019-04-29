@@ -99,8 +99,10 @@ module CordraRestClient
 		# do_data: data of the digital object
 		# pageNum: page number to retrieve
 		# pageSize: number of records per page to retrieve
-		def self.search(do_type, pageNum = 1, pageSize =10)
-			response = Faraday.get("#{API_URL}objects/?query=type:\"#{do_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}")
+		def self.search(do_type, pageNum = 0, pageSize =5)
+			s_uri="#{API_URL}objects/?query=type:\"#{do_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}"
+			puts(s_uri)
+			response = Faraday.get(s_uri)
 			results = JSON.parse(response.body)	  
 		end
 		

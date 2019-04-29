@@ -32,9 +32,8 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	  def test_create_object_by_type
 	    VCR.use_cassette('create_object') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
-	      json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
-
-		  result=CordraRestClient::DigitalObject.create("RMNH.RENA.38646","Digital Specimen",json, cred["uc_1"])
+	          json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
+		  result=CordraRestClient::DigitalObject.create(json["identifier"],"Digital Specimen",json, cred["uc_1"])
 	      
 		  #check that the result is saved
 		  assert_equal 200, result[:code]
@@ -91,10 +90,13 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	      assert_equal Hash, list_cdo.class
 		  
 	      # Check that fields are accessible
-	      assert_equal 1, list_cdo["pageNum"]
-		  assert_equal 10, list_cdo["pageSize"]
-		  assert_equal 24, list_cdo["size"]
-		  assert_equal Array, list_cdo["results"].class
+	      assert_equal 0, list_cdo["pageNum"]
+	      assert_equal 5, list_cdo["pageSize"]
+	      assert_equal 7, list_cdo["size"]
+	      assert_equal Array, list_cdo["results"].class
+	      puts("\n-------------------------------------")
+	      puts list_cdo["results"]
+	      puts("\n-------------------------------------")
 	    end
 	  end
 	  # 8 test retrieves an object via the Handle System web proxy
