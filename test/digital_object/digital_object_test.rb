@@ -151,9 +151,9 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			assert_equal "Digital Specimen", do_schema["title"]
 		end
 	end
-        #12. dynamic creation of DO
-	def test_dynamic_build_do
-		VCR.use_cassette('dynamic_build_do') do
+        #12. prepare dynamic creation of DO 
+	def test_dynamic_build_prepare
+		VCR.use_cassette('dynamic_do_prepare') do
 			# A. get object type
 			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
 			# Check object type and fields are accessible
@@ -172,6 +172,38 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			# assing object values in content to class
 		end
 	end
-        
+	#13. dynamic creation of DO 
+	# this code uses the Cordra Rest Client methods that return a new digital object and assing the retrived values to it
+        def test_dynamic_do_build
+		VCR.use_cassette('dynamic_do_build') do
+			# A. get object type
+			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
+			# Check object type and fields are accessible
+			assert_equal "20.5000.1025/B100003484", cdo.id
+		 	assert_equal "Digital Specimen", cdo.type
+			# B. get schema
+			#     The schema will be used to build a DO class dinamically
+			result=CordraRestClient::DigitalObject.get_schema(cdo.type.gsub(" ","%20"))
+			do_schema = JSON.parse(result.body)
+			# check that the result is saved
+			assert_equal "object", do_schema["type"] 
+			assert_equal "Digital Specimen", do_schema["title"]
+			# C. build new class using schema
+			do_properties = do_schema["properties"].keys
+			do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type.gsub(" ",""), do_properties 
+			new_ds = do_c.new
+			#puts new_ds.methods
+			puts new_ds.class
+			# the DO contents are a hash
+			assert_equal Hash,  cdo.content.class
+			# assing object values in content to class
+			CordraRestClient::DigitalObjectFactory.assing_attributes new_ds, cdo.content
+			cdo.content.each do |field, arg|
+				instance_var = field.gsub('/','_')
+				instance_var = instance_var.gsub(' ','_')	
+				assert_equal arg, new_ds.instance_variable_get("@#{instance_var}")
+			end
+		end
+	end
 end
 
