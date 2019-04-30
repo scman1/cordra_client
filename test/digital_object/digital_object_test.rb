@@ -2,7 +2,7 @@
 require './test/test_helper'
 
 class CordraRestClientDigitalObjectTest < Minitest::Test
-	# basic test 
+	# 0 basic test 
 	def test_exists
 		assert CordraRestClient::DigitalObject
 	end
@@ -94,9 +94,6 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	      assert_equal 5, list_cdo["pageSize"]
 	      assert_equal 7, list_cdo["size"]
 	      assert_equal Array, list_cdo["results"].class
-	      puts("\n-------------------------------------")
-	      puts list_cdo["results"]
-	      puts("\n-------------------------------------")
 	    end
 	  end
 	  # 8 test retrieves an object via the Handle System web proxy
@@ -144,17 +141,37 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	end
 	
 	# 11. test get object schema
-	# 
 	def test_modify_object_permissions
 		VCR.use_cassette('get_schema') do
 			schema_type="Digital%20Specimen"
 			result=CordraRestClient::DigitalObject.get_schema(schema_type)
 			do_schema = JSON.parse(result.body)
-			#check that the result is saved
+			# check that the right schema was delivered
 			assert_equal "object", do_schema["type"] 
 			assert_equal "Digital Specimen", do_schema["title"]
 		end
 	end
-
+        #12. dynamic creation of DO
+	def test_dynamic_build_do
+		VCR.use_cassette('dynamic_build_do') do
+			# A. get object type
+			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
+			# Check object type and fields are accessible
+			assert_equal "20.5000.1025/B100003484", cdo.id
+		 	assert_equal "Digital Specimen", cdo.type
+			# B. get schema
+			#     The schema will be used to build a DO class dinamically
+			result=CordraRestClient::DigitalObject.get_schema(cdo.type.gsub(" ","%20"))
+			do_schema = JSON.parse(result.body)
+			# check that the result is saved
+			assert_equal "object", do_schema["type"] 
+			assert_equal "Digital Specimen", do_schema["title"]
+			# build new class using schema
+			# the DO contents are a hash
+			assert_equal Hash,  cdo.content.class
+			# assing object values in content to class
+		end
+	end
+        
 end
 
