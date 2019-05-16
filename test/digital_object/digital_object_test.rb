@@ -176,9 +176,9 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	# this code uses the Cordra Rest Client methods that return a new digital object and assing the retrived values to it
         def test_dynamic_do_build
 		VCR.use_cassette('dynamic_do_build') do
-			# A. get object type
+			# A. get digital object
 			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
-			# Check object type and fields are accessible
+			# Check object id and type 
 			assert_equal "20.5000.1025/B100003484", cdo.id
 		 	assert_equal "Digital Specimen", cdo.type
 			# B. get schema
@@ -192,8 +192,6 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			do_properties = do_schema["properties"].keys
 			do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type.gsub(" ",""), do_properties 
 			new_ds = do_c.new
-			#puts new_ds.methods
-			puts new_ds.class
 			# the DO contents are a hash
 			assert_equal Hash,  cdo.content.class
 			# assing object values in content to class
