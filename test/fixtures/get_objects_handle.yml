@@ -1,0 +1,454 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://nsidr.org:8080/objects/?pageNum=0&pageSize=20&query=type:%22Digital%20Specimen%22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 22 May 2019 14:48:26 GMT
+      Request-Id:
+      - a50d6a5ec712
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJwYWdlTnVtIjogMCwKICAicGFnZVNpemUiOiAyMCwKICAic2l6ZSI6IDExLAogICJyZXN1bHRzIjogWwogICAgewogICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L1JNTkguUkVOQS4zODY0NiIsCiAgICAgICJ0eXBlIjogIkRpZ2l0YWwgU3BlY2ltZW4iLAogICAgICAiY29udGVudCI6IHsKICAgICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L1JNTkguUkVOQS4zODY0NiIsCiAgICAgICAgImNyZWF0b3IiOiAiMjAuNTAwMC4xMDI1LzE1MTdkNTQ1Y2MxMTI4M2UyMzYwIiwKICAgICAgICAibWlkc2xldmVsIjogMiwKICAgICAgICAic2NpZW50aWZpY05hbWUiOiAiTGlzc290cml0b24gdnVsZ2FyaXMgKExpbm5hZXVzLCAxNzU4KSIsCiAgICAgICAgImNvbW1vbk5hbWUiOiAiU21vb3RoIG5ld3QiLAogICAgICAgICJjb3VudHJ5IjogIk5ldGhlcmxhbmRzIiwKICAgICAgICAibG9jYWxpdHkiOiAiWnVpZC1Ib2xsYW5kLCBWb29yc2Nob3RlbiIsCiAgICAgICAgImRlY2ltYWxMYXQvTG9uZyI6IFtdLAogICAgICAgICJyZWNvcmRlZEJ5IjogIlIuIGRlIFJ1aXRlciIsCiAgICAgICAgImNvbGxlY3Rpb25EYXRlIjogIjIwMDgtMDktMDIiLAogICAgICAgICJjYXRhbG9nTnVtYmVyIjogIlJNTkguUkVOQS4zODY0NiIsCiAgICAgICAgIm90aGVyQ2F0YWxvZ051bWJlcnMiOiAiIiwKICAgICAgICAiaW5zdGl0dXRpb25Db2RlIjogIlJNTkgiLAogICAgICAgICJjb2xsZWN0aW9uQ29kZSI6ICJBbXBoaWJpYSBhbmQgUmVwdGlsaWEiLAogICAgICAgICJzdGFibGVJZGVudGlmaWVyIjogImh0dHA6Ly9kYXRhLmJpb2RpdmVyc2l0eWRhdGEubmwvbmF0dXJhbGlzL3NwZWNpbWVuL1JNTkguUkVOQS4zODY0NiIsCiAgICAgICAgInBoeXNpY2FsU3BlY2ltZW5JZCI6ICJSTU5ILlJFTkEuMzg2NDYiLAogICAgICAgICJpZGVudGlmaWVyIjogIjIwLjUwMDAuMTAyNS9STU5ILlJFTkEuMzg2NDYiCiAgICAgIH0sCiAgICAgICJtZXRhZGF0YSI6IHsKICAgICAgICAiY3JlYXRlZE9uIjogMTU1NjEwNzc5MjQ4MiwKICAgICAgICAiY3JlYXRlZEJ5IjogIjIwLjUwMDAuMTAyNS8xNTE3ZDU0NWNjMTEyODNlMjM2MCIsCiAgICAgICAgIm1vZGlmaWVkT24iOiAxNTU2MTA3NzkyNDgyLAogICAgICAgICJtb2RpZmllZEJ5IjogIjIwLjUwMDAuMTAyNS8xNTE3ZDU0NWNjMTEyODNlMjM2MCIsCiAgICAgICAgInR4bklkIjogMTcKICAgICAgfQogICAgfSwKICAgIHsKICAgICAgImlkIjogIjIwLjUwMDAuMTAyNS9CMTAwMDAzNDg0IiwKICAgICAgInR5cGUiOiAiRGlnaXRhbCBTcGVjaW1lbiIsCiAgICAgICJjb250ZW50IjogewogICAgICAgICJpZCI6ICIyMC41MDAwLjEwMjUvQjEwMDAwMzQ4NCIsCiAgICAgICAgImNyZWF0b3IiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAibWlkc2xldmVsIjogMiwKICAgICAgICAic2NpZW50aWZpY05hbWUiOiAiQWdhdGhpcyBwYWxtZXJzdG9uaWkgKEYuTXVlbGwuKSIsCiAgICAgICAgImNvdW50cnkiOiAiQXVzdHJhbGlhIiwKICAgICAgICAibG9jYWxpdHkiOiAiUXVlZW5zbGFuZCIsCiAgICAgICAgImRlY2ltYWxMYXQvTG9uZyI6IFtdLAogICAgICAgICJyZWNvcmRlZEJ5IjogIkYuTS5CYWlsZXkiLAogICAgICAgICJjb2xsZWN0aW9uRGF0ZSI6ICIxOTMyLTA0LTA4IiwKICAgICAgICAiY2F0YWxvZ051bWJlciI6ICJCIDEwIDAwMDM0ODQiLAogICAgICAgICJvdGhlckNhdGFsb2dOdW1iZXJzIjogIiIsCiAgICAgICAgImluc3RpdHV0aW9uQ29kZSI6ICJCIiwKICAgICAgICAiY29sbGVjdGlvbkNvZGUiOiAiQXVzdHJhbGlhOiBRdWVlbnNsYW5kIiwKICAgICAgICAic3RhYmxlSWRlbnRpZmllciI6ICJodHRwOi8vaGVyYmFyaXVtLmJnYm0ub3JnL29iamVjdC9CMTAwMDAzNDg0IiwKICAgICAgICAicGh5c2ljYWxTcGVjaW1lbklkIjogIkIgMTAgMDAwMzQ4NCIsCiAgICAgICAgIkRldGVybWluYXRpb25zIjogIlllcyIKICAgICAgfSwKICAgICAgIm1ldGFkYXRhIjogewogICAgICAgICJjcmVhdGVkT24iOiAxNTU2MTAzNDExMDIwLAogICAgICAgICJjcmVhdGVkQnkiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAibW9kaWZpZWRPbiI6IDE1NTYxMDM0MTEwMjAsCiAgICAgICAgIm1vZGlmaWVkQnkiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAidHhuSWQiOiAxMwogICAgICB9CiAgICB9LAogICAgewogICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L0JNTkhFMTYxMzUzMyIsCiAgICAgICJ0eXBlIjogIkRpZ2l0YWwgU3BlY2ltZW4iLAogICAgICAiY29udGVudCI6IHsKICAgICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L0JNTkhFMTYxMzUzMyIsCiAgICAgICAgImNyZWF0aW9uZGF0ZXRpbWUiOiAiMjAxOS0wNC0yOVQxMzo0Mzo1Mi4yOTVaIiwKICAgICAgICAiY3JlYXRvciI6ICIyMC41MDAwLjEwMjUvMTUxN2Q1NDVjYzExMjgzZTIzNjAiLAogICAgICAgICJtaWRzbGV2ZWwiOiAyLAogICAgICAgICJzY2llbnRpZmljTmFtZSI6ICJTY290b3B0ZXJ5eCBsdXJpZGF0YSBwbHVtYmFyaWEgKEZhYnJpY2l1cywgMTc3NSkiLAogICAgICAgICJjb21tb25OYW1lIjogIkp1bHkgYmVsbGUiLAogICAgICAgICJjb3VudHJ5IjogIlVuaXRlZCBLaW5nZG9tIiwKICAgICAgICAicmVjb3JkZWRCeSI6ICJSZXZlcmVuZCBKIEguIFZpbmUgSGFsbCAiLAogICAgICAgICJjb2xsZWN0aW9uRGF0ZSI6ICIxOTU1LTA3LTExIiwKICAgICAgICAiY2F0YWxvZ051bWJlciI6ICJCTU5IKEUpMTYxMzUzMyAiLAogICAgICAgICJvdGhlckNhdGFsb2dOdW1iZXJzIjogIk5ITVVLOmVjYXRhbG9ndWU6NjkxMzY5MSIsCiAgICAgICAgImluc3RpdHV0aW9uQ29kZSI6ICJOSE1VSyIsCiAgICAgICAgImNvbGxlY3Rpb25Db2RlIjogIkJNTkgoRSkgKEVudG9tb2xvZ3kpIiwKICAgICAgICAic3RhYmxlSWRlbnRpZmllciI6ICJodHRwczovL2RhdGEubmhtLmFjLnVrL29iamVjdC81MGQwY2M0OS1lYmE2LTQ4NjgtYjYzMy1hZDU0N2RlMGQzZjcvMTU1NjE1MDQwMDAwMCIsCiAgICAgICAgInBoeXNpY2FsU3BlY2ltZW5JZCI6ICJCTU5IKEUpMTYxMzUzMyAiLAogICAgICAgICJpZGVudGlmaWVyIjogIkJNTkhFMTYxMzUzMyIKICAgICAgfSwKICAgICAgIm1ldGFkYXRhIjogewogICAgICAgICJjcmVhdGVkT24iOiAxNTU2NTQ1NDMyMjk1LAogICAgICAgICJjcmVhdGVkQnkiOiAiMjAuNTAwMC4xMDI1LzE1MTdkNTQ1Y2MxMTI4M2UyMzYwIiwKICAgICAgICAibW9kaWZpZWRPbiI6IDE1NTY1NTAwNzYwNzUsCiAgICAgICAgIm1vZGlmaWVkQnkiOiAiMjAuNTAwMC4xMDI1LzE1MTdkNTQ1Y2MxMTI4M2UyMzYwIiwKICAgICAgICAidHhuSWQiOiAyNAogICAgICB9LAogICAgICAicGF5bG9hZHMiOiBbCiAgICAgICAgewogICAgICAgICAgIm5hbWUiOiAicGF5bG9hZCIsCiAgICAgICAgICAiZmlsZW5hbWUiOiAiQk1OSEVfMTYxMzUzM18zMDQxNzkuanBlZyIsCiAgICAgICAgICAibWVkaWFUeXBlIjogImltYWdlL2pwZWciLAogICAgICAgICAgInNpemUiOiA2MTE1MwogICAgICAgIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgImlkIjogIjIwLjUwMDAuMTAyNS9MQy4xNDM4NSIsCiAgICAgICJ0eXBlIjogIkRpZ2l0YWwgU3BlY2ltZW4iLAogICAgICAiY29udGVudCI6IHsKICAgICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L0xDLjE0Mzg1IiwKICAgICAgICAiY3JlYXRpb25kYXRldGltZSI6ICIyMDE5LTA0LTI0VDExOjA3OjExLjc3MVoiLAogICAgICAgICJjcmVhdG9yIjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1pZHNsZXZlbCI6IDIsCiAgICAgICAgInNjaWVudGlmaWNOYW1lIjogIlNhbG1vIHRydXR0YSBMaW5uYWV1cywgMTc1OCIsCiAgICAgICAgImNvdW50cnkiOiAiRmlubGFuZCIsCiAgICAgICAgImxvY2FsaXR5IjogIiBLZXNraS1TdW9taVNvdXRoIEjDpG1lIChFSCkgS3VobW9pbmVuIFDDpGlqw6RubmUiLAogICAgICAgICJkZWNpbWFsTGF0L0xvbmciOiBbCiAgICAgICAgICA2MS43MTQxLAogICAgICAgICAgMjUuNDgyOAogICAgICAgIF0sCiAgICAgICAgInJlY29yZGVkQnkiOiAiVmFuaGF0YWxvLCBKb3VrbyIsCiAgICAgICAgImNvbGxlY3Rpb25EYXRlIjogIjIwMTUtMDItMjciLAogICAgICAgICJjYXRhbG9nTnVtYmVyIjogIjEyNjgvMjAxNSIsCiAgICAgICAgIm90aGVyQ2F0YWxvZ051bWJlcnMiOiAiaHR0cHM6Ly9sYWppLmZpL2VuL3ZpZXc/dXJpPWh0dHA6JTJGJTJGdHVuLmZpJTJGTEMuMTQzODUiLAogICAgICAgICJpbnN0aXR1dGlvbkNvZGUiOiAiSllWIiwKICAgICAgICAiY29sbGVjdGlvbkNvZGUiOiAiRmlzaCBjb2xsZWN0aW9ucyIsCiAgICAgICAgInN0YWJsZUlkZW50aWZpZXIiOiAiaHR0cDovL3R1bi5maS9MQy4xNDM4NSIsCiAgICAgICAgInBoeXNpY2FsU3BlY2ltZW5JZCI6ICJ2ZXJra281NSIsCiAgICAgICAgIkFubm90YXRpb25zIjogIlllcyIKICAgICAgfSwKICAgICAgIm1ldGFkYXRhIjogewogICAgICAgICJjcmVhdGVkT24iOiAxNTU2MTA0MDMxNzcxLAogICAgICAgICJjcmVhdGVkQnkiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAibW9kaWZpZWRPbiI6IDE1NTc4NDg1NzkzMTEsCiAgICAgICAgIm1vZGlmaWVkQnkiOiAiYWRtaW4iLAogICAgICAgICJ0eG5JZCI6IDI3CiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICIyMC41MDAwLjEwMjUvTkhNVUs4NTgxNTY2IiwKICAgICAgInR5cGUiOiAiRGlnaXRhbCBTcGVjaW1lbiIsCiAgICAgICJjb250ZW50IjogewogICAgICAgICJpZCI6ICIyMC41MDAwLjEwMjUvTkhNVUs4NTgxNTY2IiwKICAgICAgICAiY3JlYXRpb25kYXRldGltZSI6ICIyMDE5LTA0LTI0VDExOjA2OjU2Ljg5OVoiLAogICAgICAgICJjcmVhdG9yIjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1pZHNsZXZlbCI6IDIsCiAgICAgICAgInNjaWVudGlmaWNOYW1lIjogIlNhbG1vIHRydXR0YSBMaW5uYWV1cywgMTc1OCIsCiAgICAgICAgImNvdW50cnkiOiAiVW5pdGVkIEtpbmdkb20iLAogICAgICAgICJsb2NhbGl0eSI6ICJCdWdlaWx5biIsCiAgICAgICAgImRlY2ltYWxMYXQvTG9uZyI6IFsKICAgICAgICAgIDUyLjUxNTU2MTEsCiAgICAgICAgICAtMy43NDEzNTcKICAgICAgICBdLAogICAgICAgICJyZWNvcmRlZEJ5IjogIkpvbiBCZWVyIiwKICAgICAgICAiY29sbGVjdGlvbkRhdGUiOiAiMjAxNy0wOS0wOSIsCiAgICAgICAgImNhdGFsb2dOdW1iZXIiOiAiMjAxOC45LjQuMTItMTMiLAogICAgICAgICJvdGhlckNhdGFsb2dOdW1iZXJzIjogIk5ITVVLOmVjYXRhbG9ndWU6ODU4MTU2NiIsCiAgICAgICAgImluc3RpdHV0aW9uQ29kZSI6ICJOSE1VSyIsCiAgICAgICAgImNvbGxlY3Rpb25Db2RlIjogIlpPTyIsCiAgICAgICAgInN0YWJsZUlkZW50aWZpZXIiOiAiaHR0cDovL2RhdGEubmhtLmFjLnVrL29iamVjdC8zYzA1M2ExNi0xNGY1LTRiMjctOGUwZC1mZGEzMmU5NmVjM2EiLAogICAgICAgICJwaHlzaWNhbFNwZWNpbWVuSWQiOiAiMjAxOC45LjQuMTItMTMiLAogICAgICAgICJBbm5vdGF0aW9ucyI6ICJZZXMiCiAgICAgIH0sCiAgICAgICJtZXRhZGF0YSI6IHsKICAgICAgICAiY3JlYXRlZE9uIjogMTU1NjEwNDAxNjg5OSwKICAgICAgICAiY3JlYXRlZEJ5IjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1vZGlmaWVkT24iOiAxNTU3ODQ4NjcxNjc3LAogICAgICAgICJtb2RpZmllZEJ5IjogImFkbWluIiwKICAgICAgICAidHhuSWQiOiAyOQogICAgICB9CiAgICB9LAogICAgewogICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L0tTLjExOTciLAogICAgICAidHlwZSI6ICJEaWdpdGFsIFNwZWNpbWVuIiwKICAgICAgImNvbnRlbnQiOiB7CiAgICAgICAgImlkIjogIjIwLjUwMDAuMTAyNS9LUy4xMTk3IiwKICAgICAgICAiY3JlYXRpb25kYXRldGltZSI6ICIyMDE5LTA0LTI0VDExOjAxOjExLjMzMloiLAogICAgICAgICJjcmVhdG9yIjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1pZHNsZXZlbCI6IDIsCiAgICAgICAgInNjaWVudGlmaWNOYW1lIjogIlNhbG1vIHRydXR0YSIsCiAgICAgICAgImNvdW50cnkiOiAiRmlubGFuZCIsCiAgICAgICAgImxvY2FsaXR5IjogIlV1c2ltYWEgKFUpLElua29vIiwKICAgICAgICAiZGVjaW1hbExhdC9Mb25nIjogWwogICAgICAgICAgNTkuNzQ2NzkzLAogICAgICAgICAgMjMuNzc5ODcKICAgICAgICBdLAogICAgICAgICJyZWNvcmRlZEJ5IjogIk51cm1pbmVuLCBLYXRhcmlpbmEiLAogICAgICAgICJjb2xsZWN0aW9uRGF0ZSI6ICIyMDAyLTExLTE0IiwKICAgICAgICAiY2F0YWxvZ051bWJlciI6ICIyNjM2IiwKICAgICAgICAib3RoZXJDYXRhbG9nTnVtYmVycyI6ICJLSzI4MjciLAogICAgICAgICJpbnN0aXR1dGlvbkNvZGUiOiAiTVpIIiwKICAgICAgICAiY29sbGVjdGlvbkNvZGUiOiAiTHVvbXVzIC0gUGlzY2VzIiwKICAgICAgICAic3RhYmxlSWRlbnRpZmllciI6ICJodHRwOi8vaWQubHVvbXVzLmZpL0tTLjExOTciLAogICAgICAgICJwaHlzaWNhbFNwZWNpbWVuSWQiOiAiS1MuMTE5NyIsCiAgICAgICAgIkFubm90YXRpb25zIjogIlllcyIKICAgICAgfSwKICAgICAgIm1ldGFkYXRhIjogewogICAgICAgICJjcmVhdGVkT24iOiAxNTU2MTAzNjcxMzMyLAogICAgICAgICJjcmVhdGVkQnkiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAibW9kaWZpZWRPbiI6IDE1NTc4NDg2MzcwODEsCiAgICAgICAgIm1vZGlmaWVkQnkiOiAiYWRtaW4iLAogICAgICAgICJ0eG5JZCI6IDI4CiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICIyMC41MDAwLjEwMjUvMzJkNjJkYjc5NTEzN2Q4NGNmODMiLAogICAgICAidHlwZSI6ICJEaWdpdGFsIFNwZWNpbWVuIiwKICAgICAgImNvbnRlbnQiOiB7CiAgICAgICAgImlkIjogIjIwLjUwMDAuMTAyNS8zMmQ2MmRiNzk1MTM3ZDg0Y2Y4MyIsCiAgICAgICAgImNyZWF0aW9uZGF0ZXRpbWUiOiAiMjAxOS0wNC0yNFQxMjozMDowMy4yOTRaIiwKICAgICAgICAiY3JlYXRvciI6ICIyMC41MDAwLjEwMjUvNjBjNmQyNzdhOGJkODFkZTdmZGQiLAogICAgICAgICJtaWRzbGV2ZWwiOiAxLAogICAgICAgICJzY2llbnRpZmljTmFtZSI6ICJBZ2F0aGlzIHBhbG1lcnN0b25paSAoRi5NdWVsbC4pIEYuTS5CYWlsZXkiLAogICAgICAgICJyZWNvcmRlZEJ5IjogIlVua25vd24iLAogICAgICAgICJjYXRhbG9nTnVtYmVyIjogIkwuMTA1MDAxMiIsCiAgICAgICAgImluc3RpdHV0aW9uQ29kZSI6ICJaWiIsCiAgICAgICAgImNvbGxlY3Rpb25Db2RlIjogIkJvdGFueSIsCiAgICAgICAgInN0YWJsZUlkZW50aWZpZXIiOiAiaHR0cDovL2RhdGEuYmlvZGl2ZXJzaXR5ZGF0YS5ubC9uYXR1cmFsaXMvc3BlY2ltZW4vTC4xMDUwMDEyIiwKICAgICAgICAicGh5c2ljYWxTcGVjaW1lbklkIjogIkwuMTA1MDAxMiIsCiAgICAgICAgIkFubm90YXRpb25zIjogIlllcyIsCiAgICAgICAgImdiaWZJZCI6ICJodHRwczovL3d3dy5nYmlmLm9yZy9vY2N1cnJlbmNlLzE5MDA3MzY1MTkiCiAgICAgIH0sCiAgICAgICJtZXRhZGF0YSI6IHsKICAgICAgICAiY3JlYXRlZE9uIjogMTU1NjEwOTAwMzI5NCwKICAgICAgICAiY3JlYXRlZEJ5IjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1vZGlmaWVkT24iOiAxNTU3ODQ4NzA5MTQwLAogICAgICAgICJtb2RpZmllZEJ5IjogImFkbWluIiwKICAgICAgICAidHhuSWQiOiAzMAogICAgICB9CiAgICB9LAogICAgewogICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L2U1MjJiMjgwZGVhNTQ4ZmNhNjUyIiwKICAgICAgInR5cGUiOiAiRGlnaXRhbCBTcGVjaW1lbiIsCiAgICAgICJjb250ZW50IjogewogICAgICAgICJpZCI6ICIyMC41MDAwLjEwMjUvZTUyMmIyODBkZWE1NDhmY2E2NTIiLAogICAgICAgICJjcmVhdG9yIjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1pZHNsZXZlbCI6IDIsCiAgICAgICAgInNjaWVudGlmaWNOYW1lIjogIkFjaGlsbGVhIHBhbm5vbmljYSBTY2hlZWxlIiwKICAgICAgICAiY291bnRyeSI6ICJHZXJtYW55IiwKICAgICAgICAibG9jYWxpdHkiOiAiU2FjaHNlbi1BbmhhbHQiLAogICAgICAgICJkZWNpbWFsTGF0L0xvbmciOiBbCiAgICAgICAgICA1MS44NiwKICAgICAgICAgIDEyLjQyCiAgICAgICAgXSwKICAgICAgICAicmVjb3JkZWRCeSI6ICJXaWxsaW5nLFIuICYgV2lsbGluZyxFLiAyOTU1NiBEIiwKICAgICAgICAiY29sbGVjdGlvbkRhdGUiOiAiMjAxNC0wOC0yOCIsCiAgICAgICAgImNhdGFsb2dOdW1iZXIiOiAiQiAxMCAwNTg2ODkzIiwKICAgICAgICAiaW5zdGl0dXRpb25Db2RlIjogIkIiLAogICAgICAgICJjb2xsZWN0aW9uQ29kZSI6ICIgQiAxMCAwNTg2ODkzICIsCiAgICAgICAgInN0YWJsZUlkZW50aWZpZXIiOiAiaHR0cDovL2hlcmJhcml1bS5iZ2JtLm9yZy9vYmplY3QvQjEwMDU4Njg5MyIsCiAgICAgICAgInBoeXNpY2FsU3BlY2ltZW5JZCI6ICIgQiAxMCAwNTg2ODkzIiwKICAgICAgICAiQW5ub3RhdGlvbnMiOiAiaHR0cHM6Ly9hbm5vc3lzLmJnYm0uZnUtYmVybGluLmRlL0Fubm9TeXMvcmVwb3NpdG9yeS84YmEwNTI0Yy1hYWMxLTExZTgtOTkwNS00OTU3YzhiMThhNTkiLAogICAgICAgICJnYmlmSWQiOiAiaHR0cHM6Ly93d3cuZ2JpZi5vcmcvb2NjdXJyZW5jZS8xODM4OTY3ODc0IiwKICAgICAgICAiY2F0T2ZMaWZlUmVmZXJlbmNlIjogImh0dHA6Ly93d3cuY2F0YWxvZ3Vlb2ZsaWZlLm9yZy9jb2wvZGV0YWlscy9zcGVjaWVzL2lkL2JlMDAzZGQyNjQ1ZDMxZjM2OGJiZGIwYTFjMGUxYWQyIiwKICAgICAgICAiYXZhaWxhYmxlSW1hZ2VzIjogWwogICAgICAgICAgWwogICAgICAgICAgICAiQ3VyYXRvcnMgSGVyYmFyaXVtIEIgKDIwMDArKSIsCiAgICAgICAgICAgICJpbWFnZS9qcGVnIiwKICAgICAgICAgICAgIjQ5MHg3MDAiLAogICAgICAgICAgICAiQm90YW5pYyBHYXJkZW4gYW5kIEJvdGFuaWNhbCBNdXNldW0gQmVybGluIiwKICAgICAgICAgICAgIkNDIEJZLVNBIDMuMCIsCiAgICAgICAgICAgICJodHRwczovL21lZGlhc3RvcmFnZS5iZ2JtLm9yZy9mc2kvc2VydmVyP3R5cGU9aW1hZ2Umc291cmNlPVdpbGxpbmclNUZERSUyRjIwMTQlMkYwOCUyRjI4JTJGMjAxNC0wOC0yOF8xMDEuanBnIgogICAgICAgICAgXSwKICAgICAgICAgIFsKICAgICAgICAgICAgIkN1cmF0b3JzIEhlcmJhcml1bSBCICgyMDAwKykiLAogICAgICAgICAgICAiaW1hZ2UvanBlZyIsCiAgICAgICAgICAgICI0OTB4NzAwIiwKICAgICAgICAgICAgIkJvdGFuaWMgR2FyZGVuIGFuZCBCb3RhbmljYWwgTXVzZXVtIEJlcmxpbiIsCiAgICAgICAgICAgICJDQyBCWS1TQSAzLjAiLAogICAgICAgICAgICAiaHR0cHM6Ly9tZWRpYXN0b3JhZ2UuYmdibS5vcmcvZnNpL3NlcnZlcj90eXBlPWltYWdlJnNvdXJjZT1XaWxsaW5nJTVGREUlMkYyMDE0JTJGMDglMkYyOCUyRjIwMTQtMDgtMjhfMTA2LmpwZyIKICAgICAgICAgIF0sCiAgICAgICAgICBbCiAgICAgICAgICAgICJDdXJhdG9ycyBIZXJiYXJpdW0gQiAoMjAwMCspIiwKICAgICAgICAgICAgImltYWdlL2pwZWciLAogICAgICAgICAgICAiNDkweDcwMCIsCiAgICAgICAgICAgICJCb3RhbmljIEdhcmRlbiBhbmQgQm90YW5pY2FsIE11c2V1bSBCZXJsaW4iLAogICAgICAgICAgICAiQ0MgQlktU0EgMy4wIiwKICAgICAgICAgICAgImh0dHBzOi8vbWVkaWFzdG9yYWdlLmJnYm0ub3JnL2ZzaS9zZXJ2ZXI/dHlwZT1pbWFnZSZzb3VyY2U9V2lsbGluZyU1RkRFJTJGMjAxNCUyRjA4JTJGMjglMkYyMDE0LTA4LTI4Xzk1LmpwZyIKICAgICAgICAgIF0sCiAgICAgICAgICBbCiAgICAgICAgICAgICJDdXJhdG9ycyBIZXJiYXJpdW0gQiAoMjAwMCspIiwKICAgICAgICAgICAgImltYWdlL2pwZWciLAogICAgICAgICAgICAiNDkweDcwMCIsCiAgICAgICAgICAgICJCb3RhbmljIEdhcmRlbiBhbmQgQm90YW5pY2FsIE11c2V1bSBCZXJsaW4iLAogICAgICAgICAgICAiQ0MgQlktU0EgMy4wIiwKICAgICAgICAgICAgImh0dHBzOi8vbWVkaWFzdG9yYWdlLmJnYm0ub3JnL2ZzaS9zZXJ2ZXI/dHlwZT1pbWFnZSZzb3VyY2U9V2lsbGluZyU1RkRFJTJGMjAxNCUyRjA4JTJGMjglMkYyMDE0LTA4LTI4XzExMi5qcGciCiAgICAgICAgICBdCiAgICAgICAgXQogICAgICB9LAogICAgICAibWV0YWRhdGEiOiB7CiAgICAgICAgImNyZWF0ZWRPbiI6IDE1NTgzNzA3OTA4NzMsCiAgICAgICAgImNyZWF0ZWRCeSI6ICIyMC41MDAwLjEwMjUvNjBjNmQyNzdhOGJkODFkZTdmZGQiLAogICAgICAgICJtb2RpZmllZE9uIjogMTU1ODM3MDc5MDg3MywKICAgICAgICAibW9kaWZpZWRCeSI6ICIyMC41MDAwLjEwMjUvNjBjNmQyNzdhOGJkODFkZTdmZGQiLAogICAgICAgICJ0eG5JZCI6IDc1CiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJpZCI6ICIyMC41MDAwLjEwMjUvYzFhZmNmNTkyN2RiNTk2YWViM2QiLAogICAgICAidHlwZSI6ICJEaWdpdGFsIFNwZWNpbWVuIiwKICAgICAgImNvbnRlbnQiOiB7CiAgICAgICAgImlkIjogIjIwLjUwMDAuMTAyNS9jMWFmY2Y1OTI3ZGI1OTZhZWIzZCIsCiAgICAgICAgImNyZWF0b3IiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAibWlkc2xldmVsIjogMiwKICAgICAgICAic2NpZW50aWZpY05hbWUiOiAiQWNoaWxsZWEgcGFubm9uaWNhIFNjaGVlbGUiLAogICAgICAgICJjb3VudHJ5IjogIkdlcm1hbnkiLAogICAgICAgICJsb2NhbGl0eSI6ICJTYWNoc2VuLUFuaGFsdCIsCiAgICAgICAgImRlY2ltYWxMYXQvTG9uZyI6IFsKICAgICAgICAgIDUxLjg2LAogICAgICAgICAgMTIuNDIKICAgICAgICBdLAogICAgICAgICJyZWNvcmRlZEJ5IjogIldpbGxpbmcsUi4gJiBXaWxsaW5nLEUuIDI5NTU2IEQiLAogICAgICAgICJjb2xsZWN0aW9uRGF0ZSI6ICIyMDE0LTA4LTI4IiwKICAgICAgICAiY2F0YWxvZ051bWJlciI6ICJCIDEwIDA1ODY4OTMiLAogICAgICAgICJpbnN0aXR1dGlvbkNvZGUiOiAiQiIsCiAgICAgICAgImNvbGxlY3Rpb25Db2RlIjogIiBCIDEwIDA1ODY4OTMgIiwKICAgICAgICAic3RhYmxlSWRlbnRpZmllciI6ICJodHRwOi8vaGVyYmFyaXVtLmJnYm0ub3JnL29iamVjdC9CMTAwNTg2ODkzIiwKICAgICAgICAicGh5c2ljYWxTcGVjaW1lbklkIjogIiBCIDEwIDA1ODY4OTMiLAogICAgICAgICJBbm5vdGF0aW9ucyI6ICJodHRwczovL2Fubm9zeXMuYmdibS5mdS1iZXJsaW4uZGUvQW5ub1N5cy9yZXBvc2l0b3J5LzhiYTA1MjRjLWFhYzEtMTFlOC05OTA1LTQ5NTdjOGIxOGE1OSIsCiAgICAgICAgImdiaWZJZCI6ICJodHRwczovL3d3dy5nYmlmLm9yZy9vY2N1cnJlbmNlLzE4Mzg5Njc4NzQiLAogICAgICAgICJjYXRPZkxpZmVSZWZlcmVuY2UiOiAiaHR0cDovL3d3dy5jYXRhbG9ndWVvZmxpZmUub3JnL2NvbC9kZXRhaWxzL3NwZWNpZXMvaWQvYmUwMDNkZDI2NDVkMzFmMzY4YmJkYjBhMWMwZTFhZDIiLAogICAgICAgICJhdmFpbGFibGVJbWFnZXMiOiBbCiAgICAgICAgICBbCiAgICAgICAgICAgICJDdXJhdG9ycyBIZXJiYXJpdW0gQiAoMjAwMCspIiwKICAgICAgICAgICAgImltYWdlL2pwZWciLAogICAgICAgICAgICAiNDkweDcwMCIsCiAgICAgICAgICAgICJCb3RhbmljIEdhcmRlbiBhbmQgQm90YW5pY2FsIE11c2V1bSBCZXJsaW4iLAogICAgICAgICAgICAiQ0MgQlktU0EgMy4wIiwKICAgICAgICAgICAgImh0dHBzOi8vbWVkaWFzdG9yYWdlLmJnYm0ub3JnL2ZzaS9zZXJ2ZXI/dHlwZT1pbWFnZSZzb3VyY2U9V2lsbGluZyU1RkRFJTJGMjAxNCUyRjA4JTJGMjglMkYyMDE0LTA4LTI4XzEwMS5qcGciCiAgICAgICAgICBdLAogICAgICAgICAgWwogICAgICAgICAgICAiQ3VyYXRvcnMgSGVyYmFyaXVtIEIgKDIwMDArKSIsCiAgICAgICAgICAgICJpbWFnZS9qcGVnIiwKICAgICAgICAgICAgIjQ5MHg3MDAiLAogICAgICAgICAgICAiQm90YW5pYyBHYXJkZW4gYW5kIEJvdGFuaWNhbCBNdXNldW0gQmVybGluIiwKICAgICAgICAgICAgIkNDIEJZLVNBIDMuMCIsCiAgICAgICAgICAgICJodHRwczovL21lZGlhc3RvcmFnZS5iZ2JtLm9yZy9mc2kvc2VydmVyP3R5cGU9aW1hZ2Umc291cmNlPVdpbGxpbmclNUZERSUyRjIwMTQlMkYwOCUyRjI4JTJGMjAxNC0wOC0yOF8xMDYuanBnIgogICAgICAgICAgXSwKICAgICAgICAgIFsKICAgICAgICAgICAgIkN1cmF0b3JzIEhlcmJhcml1bSBCICgyMDAwKykiLAogICAgICAgICAgICAiaW1hZ2UvanBlZyIsCiAgICAgICAgICAgICI0OTB4NzAwIiwKICAgICAgICAgICAgIkJvdGFuaWMgR2FyZGVuIGFuZCBCb3RhbmljYWwgTXVzZXVtIEJlcmxpbiIsCiAgICAgICAgICAgICJDQyBCWS1TQSAzLjAiLAogICAgICAgICAgICAiaHR0cHM6Ly9tZWRpYXN0b3JhZ2UuYmdibS5vcmcvZnNpL3NlcnZlcj90eXBlPWltYWdlJnNvdXJjZT1XaWxsaW5nJTVGREUlMkYyMDE0JTJGMDglMkYyOCUyRjIwMTQtMDgtMjhfOTUuanBnIgogICAgICAgICAgXSwKICAgICAgICAgIFsKICAgICAgICAgICAgIkN1cmF0b3JzIEhlcmJhcml1bSBCICgyMDAwKykiLAogICAgICAgICAgICAiaW1hZ2UvanBlZyIsCiAgICAgICAgICAgICI0OTB4NzAwIiwKICAgICAgICAgICAgIkJvdGFuaWMgR2FyZGVuIGFuZCBCb3RhbmljYWwgTXVzZXVtIEJlcmxpbiIsCiAgICAgICAgICAgICJDQyBCWS1TQSAzLjAiLAogICAgICAgICAgICAiaHR0cHM6Ly9tZWRpYXN0b3JhZ2UuYmdibS5vcmcvZnNpL3NlcnZlcj90eXBlPWltYWdlJnNvdXJjZT1XaWxsaW5nJTVGREUlMkYyMDE0JTJGMDglMkYyOCUyRjIwMTQtMDgtMjhfMTEyLmpwZyIKICAgICAgICAgIF0KICAgICAgICBdCiAgICAgIH0sCiAgICAgICJtZXRhZGF0YSI6IHsKICAgICAgICAiY3JlYXRlZE9uIjogMTU1ODM3MTM1ODA0OSwKICAgICAgICAiY3JlYXRlZEJ5IjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1vZGlmaWVkT24iOiAxNTU4MzcxMzU4MDQ5LAogICAgICAgICJtb2RpZmllZEJ5IjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgInR4bklkIjogODAKICAgICAgfQogICAgfSwKICAgIHsKICAgICAgImlkIjogIjIwLjUwMDAuMTAyNS83OTFiMTQ4ZWExMmUxMWU4ZDIzMyIsCiAgICAgICJ0eXBlIjogIkRpZ2l0YWwgU3BlY2ltZW4iLAogICAgICAiY29udGVudCI6IHsKICAgICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1Lzc5MWIxNDhlYTEyZTExZThkMjMzIiwKICAgICAgICAiY3JlYXRvciI6ICIyMC41MDAwLjEwMjUvNjBjNmQyNzdhOGJkODFkZTdmZGQiLAogICAgICAgICJtaWRzbGV2ZWwiOiAyLAogICAgICAgICJzY2llbnRpZmljTmFtZSI6ICJBY2hpbGxlYSBwYW5ub25pY2EgU2NoZWVsZSIsCiAgICAgICAgImNvdW50cnkiOiAiR2VybWFueSIsCiAgICAgICAgImxvY2FsaXR5IjogIlNhY2hzZW4tQW5oYWx0IiwKICAgICAgICAiZGVjaW1hbExhdC9Mb25nIjogWwogICAgICAgICAgNTEuODYsCiAgICAgICAgICAxMi40MgogICAgICAgIF0sCiAgICAgICAgInJlY29yZGVkQnkiOiAiV2lsbGluZyxSLiAmIFdpbGxpbmcsRS4gMjk1NTYgRCIsCiAgICAgICAgImNvbGxlY3Rpb25EYXRlIjogIjIwMTQtMDgtMjgiLAogICAgICAgICJjYXRhbG9nTnVtYmVyIjogIkIgMTAgMDU4Njg5MyIsCiAgICAgICAgImluc3RpdHV0aW9uQ29kZSI6ICJCIiwKICAgICAgICAiY29sbGVjdGlvbkNvZGUiOiAiIEIgMTAgMDU4Njg5MyAiLAogICAgICAgICJzdGFibGVJZGVudGlmaWVyIjogImh0dHA6Ly9oZXJiYXJpdW0uYmdibS5vcmcvb2JqZWN0L0IxMDA1ODY4OTMiLAogICAgICAgICJwaHlzaWNhbFNwZWNpbWVuSWQiOiAiIEIgMTAgMDU4Njg5MyIsCiAgICAgICAgIkFubm90YXRpb25zIjogImh0dHBzOi8vYW5ub3N5cy5iZ2JtLmZ1LWJlcmxpbi5kZS9Bbm5vU3lzL3JlcG9zaXRvcnkvOGJhMDUyNGMtYWFjMS0xMWU4LTk5MDUtNDk1N2M4YjE4YTU5IiwKICAgICAgICAiZ2JpZklkIjogImh0dHBzOi8vd3d3LmdiaWYub3JnL29jY3VycmVuY2UvMTgzODk2Nzg3NCIsCiAgICAgICAgImNhdE9mTGlmZVJlZmVyZW5jZSI6ICJodHRwOi8vd3d3LmNhdGFsb2d1ZW9mbGlmZS5vcmcvY29sL2RldGFpbHMvc3BlY2llcy9pZC9iZTAwM2RkMjY0NWQzMWYzNjhiYmRiMGExYzBlMWFkMiIsCiAgICAgICAgImF2YWlsYWJsZUltYWdlcyI6IFsKICAgICAgICAgIFsKICAgICAgICAgICAgIkN1cmF0b3JzIEhlcmJhcml1bSBCICgyMDAwKykiLAogICAgICAgICAgICAiaW1hZ2UvanBlZyIsCiAgICAgICAgICAgICI0OTB4NzAwIiwKICAgICAgICAgICAgIkJvdGFuaWMgR2FyZGVuIGFuZCBCb3RhbmljYWwgTXVzZXVtIEJlcmxpbiIsCiAgICAgICAgICAgICJDQyBCWS1TQSAzLjAiLAogICAgICAgICAgICAiaHR0cHM6Ly9tZWRpYXN0b3JhZ2UuYmdibS5vcmcvZnNpL3NlcnZlcj90eXBlPWltYWdlJnNvdXJjZT1XaWxsaW5nJTVGREUlMkYyMDE0JTJGMDglMkYyOCUyRjIwMTQtMDgtMjhfMTAxLmpwZyIKICAgICAgICAgIF0sCiAgICAgICAgICBbCiAgICAgICAgICAgICJDdXJhdG9ycyBIZXJiYXJpdW0gQiAoMjAwMCspIiwKICAgICAgICAgICAgImltYWdlL2pwZWciLAogICAgICAgICAgICAiNDkweDcwMCIsCiAgICAgICAgICAgICJCb3RhbmljIEdhcmRlbiBhbmQgQm90YW5pY2FsIE11c2V1bSBCZXJsaW4iLAogICAgICAgICAgICAiQ0MgQlktU0EgMy4wIiwKICAgICAgICAgICAgImh0dHBzOi8vbWVkaWFzdG9yYWdlLmJnYm0ub3JnL2ZzaS9zZXJ2ZXI/dHlwZT1pbWFnZSZzb3VyY2U9V2lsbGluZyU1RkRFJTJGMjAxNCUyRjA4JTJGMjglMkYyMDE0LTA4LTI4XzEwNi5qcGciCiAgICAgICAgICBdLAogICAgICAgICAgWwogICAgICAgICAgICAiQ3VyYXRvcnMgSGVyYmFyaXVtIEIgKDIwMDArKSIsCiAgICAgICAgICAgICJpbWFnZS9qcGVnIiwKICAgICAgICAgICAgIjQ5MHg3MDAiLAogICAgICAgICAgICAiQm90YW5pYyBHYXJkZW4gYW5kIEJvdGFuaWNhbCBNdXNldW0gQmVybGluIiwKICAgICAgICAgICAgIkNDIEJZLVNBIDMuMCIsCiAgICAgICAgICAgICJodHRwczovL21lZGlhc3RvcmFnZS5iZ2JtLm9yZy9mc2kvc2VydmVyP3R5cGU9aW1hZ2Umc291cmNlPVdpbGxpbmclNUZERSUyRjIwMTQlMkYwOCUyRjI4JTJGMjAxNC0wOC0yOF85NS5qcGciCiAgICAgICAgICBdLAogICAgICAgICAgWwogICAgICAgICAgICAiQ3VyYXRvcnMgSGVyYmFyaXVtIEIgKDIwMDArKSIsCiAgICAgICAgICAgICJpbWFnZS9qcGVnIiwKICAgICAgICAgICAgIjQ5MHg3MDAiLAogICAgICAgICAgICAiQm90YW5pYyBHYXJkZW4gYW5kIEJvdGFuaWNhbCBNdXNldW0gQmVybGluIiwKICAgICAgICAgICAgIkNDIEJZLVNBIDMuMCIsCiAgICAgICAgICAgICJodHRwczovL21lZGlhc3RvcmFnZS5iZ2JtLm9yZy9mc2kvc2VydmVyP3R5cGU9aW1hZ2Umc291cmNlPVdpbGxpbmclNUZERSUyRjIwMTQlMkYwOCUyRjI4JTJGMjAxNC0wOC0yOF8xMTIuanBnIgogICAgICAgICAgXQogICAgICAgIF0KICAgICAgfSwKICAgICAgIm1ldGFkYXRhIjogewogICAgICAgICJjcmVhdGVkT24iOiAxNTU4NDI0NTkyMTYxLAogICAgICAgICJjcmVhdGVkQnkiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAibW9kaWZpZWRPbiI6IDE1NTg0MjQ1OTIxNjEsCiAgICAgICAgIm1vZGlmaWVkQnkiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAidHhuSWQiOiAxMDcKICAgICAgfQogICAgfSwKICAgIHsKICAgICAgImlkIjogIjIwLjUwMDAuMTAyNS9jNDk0MmQ4N2E5Zjg5ZDg5MjljMSIsCiAgICAgICJ0eXBlIjogIkRpZ2l0YWwgU3BlY2ltZW4iLAogICAgICAiY29udGVudCI6IHsKICAgICAgICAiaWQiOiAiMjAuNTAwMC4xMDI1L2M0OTQyZDg3YTlmODlkODkyOWMxIiwKICAgICAgICAiY3JlYXRpb25kYXRldGltZSI6ICIyMDE5LTA1LTIwVDE2OjQ2OjAzLjA2MVoiLAogICAgICAgICJjcmVhdG9yIjogIjIwLjUwMDAuMTAyNS82MGM2ZDI3N2E4YmQ4MWRlN2ZkZCIsCiAgICAgICAgIm1pZHNsZXZlbCI6IDIsCiAgICAgICAgInNjaWVudGlmaWNOYW1lIjogIkFjaGlsbGVhIHBhbm5vbmljYSBTY2hlZWxlIiwKICAgICAgICAiY29tbW9uTmFtZSI6ICJVbmdhcmlzY2hlIFdpZXNlbi1TY2hhZmdhcmJlIC8gSHVuZ2FyaWFuIG1lYWRvdyB5YXJyb3ciLAogICAgICAgICJjb3VudHJ5IjogIkdlcm1hbnkiLAogICAgICAgICJsb2NhbGl0eSI6ICJTYWNoc2VuLUFuaGFsdCIsCiAgICAgICAgImRlY2ltYWxMYXQvTG9uZyI6IFsKICAgICAgICAgIDUxLjg2LAogICAgICAgICAgMTIuNDIKICAgICAgICBdLAogICAgICAgICJyZWNvcmRlZEJ5IjogIldpbGxpbmcsUi4gJiBXaWxsaW5nLEUuIDI5NTU2IEQiLAogICAgICAgICJjb2xsZWN0aW9uRGF0ZSI6ICIyMDE0LTA4LTI4IiwKICAgICAgICAiY2F0YWxvZ051bWJlciI6ICJCIDEwIDA1ODY4OTMiLAogICAgICAgICJpbnN0aXR1dGlvbkNvZGUiOiAiQiIsCiAgICAgICAgImNvbGxlY3Rpb25Db2RlIjogIiBCIDEwIDA1ODY4OTMgIiwKICAgICAgICAic3RhYmxlSWRlbnRpZmllciI6ICJodHRwOi8vaGVyYmFyaXVtLmJnYm0ub3JnL29iamVjdC9CMTAwNTg2ODkzIiwKICAgICAgICAicGh5c2ljYWxTcGVjaW1lbklkIjogIiBCIDEwIDA1ODY4OTMiLAogICAgICAgICJBbm5vdGF0aW9ucyI6ICJodHRwczovL2Fubm9zeXMuYmdibS5mdS1iZXJsaW4uZGUvQW5ub1N5cy9yZXBvc2l0b3J5LzhiYTA1MjRjLWFhYzEtMTFlOC05OTA1LTQ5NTdjOGIxOGE1OSIsCiAgICAgICAgImdiaWZJZCI6ICJodHRwczovL3d3dy5nYmlmLm9yZy9vY2N1cnJlbmNlLzE4Mzg5Njc4NzQiLAogICAgICAgICJjYXRPZkxpZmVSZWZlcmVuY2UiOiAiaHR0cDovL3d3dy5jYXRhbG9ndWVvZmxpZmUub3JnL2NvbC9kZXRhaWxzL3NwZWNpZXMvaWQvYmUwMDNkZDI2NDVkMzFmMzY4YmJkYjBhMWMwZTFhZDIiLAogICAgICAgICJhdmFpbGFibGVJbWFnZXMiOiBbCiAgICAgICAgICBbCiAgICAgICAgICAgICJDdXJhdG9ycyBIZXJiYXJpdW0gQiAoMjAwMCspIiwKICAgICAgICAgICAgImltYWdlL2pwZWciLAogICAgICAgICAgICAiNDkweDcwMCIsCiAgICAgICAgICAgICJCb3RhbmljIEdhcmRlbiBhbmQgQm90YW5pY2FsIE11c2V1bSBCZXJsaW4iLAogICAgICAgICAgICAiQ0MgQlktU0EgMy4wIiwKICAgICAgICAgICAgImh0dHBzOi8vbWVkaWFzdG9yYWdlLmJnYm0ub3JnL2ZzaS9zZXJ2ZXI/dHlwZT1pbWFnZSZzb3VyY2U9V2lsbGluZyU1RkRFJTJGMjAxNCUyRjA4JTJGMjglMkYyMDE0LTA4LTI4XzEwMS5qcGciCiAgICAgICAgICBdLAogICAgICAgICAgWwogICAgICAgICAgICAiQ3VyYXRvcnMgSGVyYmFyaXVtIEIgKDIwMDArKSIsCiAgICAgICAgICAgICJpbWFnZS9qcGVnIiwKICAgICAgICAgICAgIjQ5MHg3MDAiLAogICAgICAgICAgICAiQm90YW5pYyBHYXJkZW4gYW5kIEJvdGFuaWNhbCBNdXNldW0gQmVybGluIiwKICAgICAgICAgICAgIkNDIEJZLVNBIDMuMCIsCiAgICAgICAgICAgICJodHRwczovL21lZGlhc3RvcmFnZS5iZ2JtLm9yZy9mc2kvc2VydmVyP3R5cGU9aW1hZ2Umc291cmNlPVdpbGxpbmclNUZERSUyRjIwMTQlMkYwOCUyRjI4JTJGMjAxNC0wOC0yOF8xMDYuanBnIgogICAgICAgICAgXSwKICAgICAgICAgIFsKICAgICAgICAgICAgIkN1cmF0b3JzIEhlcmJhcml1bSBCICgyMDAwKykiLAogICAgICAgICAgICAiaW1hZ2UvanBlZyIsCiAgICAgICAgICAgICI0OTB4NzAwIiwKICAgICAgICAgICAgIkJvdGFuaWMgR2FyZGVuIGFuZCBCb3RhbmljYWwgTXVzZXVtIEJlcmxpbiIsCiAgICAgICAgICAgICJDQyBCWS1TQSAzLjAiLAogICAgICAgICAgICAiaHR0cHM6Ly9tZWRpYXN0b3JhZ2UuYmdibS5vcmcvZnNpL3NlcnZlcj90eXBlPWltYWdlJnNvdXJjZT1XaWxsaW5nJTVGREUlMkYyMDE0JTJGMDglMkYyOCUyRjIwMTQtMDgtMjhfOTUuanBnIgogICAgICAgICAgXSwKICAgICAgICAgIFsKICAgICAgICAgICAgIkN1cmF0b3JzIEhlcmJhcml1bSBCICgyMDAwKykiLAogICAgICAgICAgICAiaW1hZ2UvanBlZyIsCiAgICAgICAgICAgICI0OTB4NzAwIiwKICAgICAgICAgICAgIkJvdGFuaWMgR2FyZGVuIGFuZCBCb3RhbmljYWwgTXVzZXVtIEJlcmxpbiIsCiAgICAgICAgICAgICJDQyBCWS1TQSAzLjAiLAogICAgICAgICAgICAiaHR0cHM6Ly9tZWRpYXN0b3JhZ2UuYmdibS5vcmcvZnNpL3NlcnZlcj90eXBlPWltYWdlJnNvdXJjZT1XaWxsaW5nJTVGREUlMkYyMDE0JTJGMDglMkYyOCUyRjIwMTQtMDgtMjhfMTEyLmpwZyIKICAgICAgICAgIF0KICAgICAgICBdLAogICAgICAgICJ3aWtpcGVkaWEiOiAiaHR0cHM6Ly9kZS53aWtpcGVkaWEub3JnL3dpa2kvVW5nYXJpc2NoZV9XaWVzZW4tU2NoYWZnYXJiZSIKICAgICAgfSwKICAgICAgIm1ldGFkYXRhIjogewogICAgICAgICJjcmVhdGVkT24iOiAxNTU4MzcwNzYzMDYxLAogICAgICAgICJjcmVhdGVkQnkiOiAiMjAuNTAwMC4xMDI1LzYwYzZkMjc3YThiZDgxZGU3ZmRkIiwKICAgICAgICAibW9kaWZpZWRPbiI6IDE1NTg1MjA1MTEzNDksCiAgICAgICAgIm1vZGlmaWVkQnkiOiAiYWRtaW4iLAogICAgICAgICJ0eG5JZCI6IDEwOQogICAgICB9CiAgICB9CiAgXQp9
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:26 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/RMNH.RENA.38646
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: ''
+    headers:
+      Location:
+      - http://131.251.172.30:8080/#objects/20.5000.1025/RMNH.RENA.38646
+      Expires:
+      - Thu, 23 May 2019 14:48:26 GMT
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '213'
+      Date:
+      - Wed, 22 May 2019 14:48:25 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        <html><head><title>Handle Redirect</title></head>
+        <body><a href="http://131.251.172.30:8080/#objects/20.5000.1025/RMNH.RENA.38646">http://131.251.172.30:8080/#objects/20.5000.1025/RMNH.RENA.38646</a></body></html>
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:26 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/B100003484
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: ''
+    headers:
+      Location:
+      - http://131.251.172.30:8080/#objects/20.5000.1025/B100003484
+      Expires:
+      - Thu, 23 May 2019 14:48:26 GMT
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '203'
+      Date:
+      - Wed, 22 May 2019 14:48:26 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        <html><head><title>Handle Redirect</title></head>
+        <body><a href="http://131.251.172.30:8080/#objects/20.5000.1025/B100003484">http://131.251.172.30:8080/#objects/20.5000.1025/B100003484</a></body></html>
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:26 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/BMNHE1613533
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1068'
+      Date:
+      - Wed, 22 May 2019 14:48:26 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/BMNHE1613533</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2FBMNHE1613533.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:27 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/LC.14385
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1060'
+      Date:
+      - Wed, 22 May 2019 14:48:26 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/LC.14385</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2FLC.14385.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:27 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/NHMUK8581566
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1068'
+      Date:
+      - Wed, 22 May 2019 14:48:26 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/NHMUK8581566</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2FNHMUK8581566.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:27 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/KS.1197
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: ''
+    headers:
+      Location:
+      - http://131.251.172.30:8080/#objects/20.5000.1025/KS.1197
+      Expires:
+      - Thu, 23 May 2019 14:48:27 GMT
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '197'
+      Date:
+      - Wed, 22 May 2019 14:48:26 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        <html><head><title>Handle Redirect</title></head>
+        <body><a href="http://131.251.172.30:8080/#objects/20.5000.1025/KS.1197">http://131.251.172.30:8080/#objects/20.5000.1025/KS.1197</a></body></html>
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:27 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/32d62db795137d84cf83
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1084'
+      Date:
+      - Wed, 22 May 2019 14:48:26 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/32d62db795137d84cf83</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2F32d62db795137d84cf83.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:27 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/e522b280dea548fca652
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1084'
+      Date:
+      - Wed, 22 May 2019 14:48:27 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/e522b280dea548fca652</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2Fe522b280dea548fca652.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:27 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/c1afcf5927db596aeb3d
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1084'
+      Date:
+      - Wed, 22 May 2019 14:48:27 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/c1afcf5927db596aeb3d</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2Fc1afcf5927db596aeb3d.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:28 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/791b148ea12e11e8d233
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1084'
+      Date:
+      - Wed, 22 May 2019 14:48:27 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/791b148ea12e11e8d233</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2F791b148ea12e11e8d233.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:28 GMT
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/c4942d87a9f89d8929c1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1084'
+      Date:
+      - Wed, 22 May 2019 14:48:27 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/c4942d87a9f89d8929c1</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2Fc4942d87a9f89d8929c1.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 14:48:28 GMT
+recorded_with: VCR 4.0.0

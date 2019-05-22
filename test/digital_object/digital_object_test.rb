@@ -97,8 +97,8 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	    end
 	  end
 	  # 8 test retrieves an object via the Handle System web proxy
-	  def test_retrieve_objects_via_handle
-	    VCR.use_cassette('get_object_hanlde') do
+	  def test_retrieve_object_via_handle
+	    VCR.use_cassette('get_object_handle') do
 	      redirection = CordraRestClient::DigitalObject.handle_find("20.5000.1025/B100003484")
 	      assert_equal String, redirection.class
 		  
@@ -203,5 +203,30 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			end
 		end
 	end
+	#14 
+	def test_retrieve_objects_via_handle
+	    VCR.use_cassette('get_objects_handle') do
+	      list_cdo = CordraRestClient::DigitalObject.search("Digital Specimen",0,20)
+	      puts list_cdo["results"].length
+	      list_cdo["results"].each do |res|
+	        puts res["id"]
+		test_this_id= res["id"] 
+		redirection = CordraRestClient::DigitalObject.handle_find(test_this_id)
+	        assert_equal String, redirection.class
+		if redirection.match(/Handle Redirect/)
+		  assert true
+		else
+		   false
+		   puts "fail"
+		end
+	      end
+	      #redirection = CordraRestClient::DigitalObject.handle_find("20.5000.1025/BMNHE1613533")
+	      #assert_equal String, redirection.class
+		  
+	      # Check that fields are accessible
+		  #assert_match /Handle Redirect/, redirection
+		  #assert_match /BMNHE1613533/, redirection
+	    end
+	end  
 end
 
