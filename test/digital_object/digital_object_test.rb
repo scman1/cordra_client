@@ -18,7 +18,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			assert_equal "Digital Specimen", cdo.type
 		end
 	  end
-	  # 2 test retrieve object creator, variant of  retrieve object by ID
+	# 2 test retrieve object creator, variant of  retrieve object by ID
 	def test_retrieve_object_creator
 		VCR.use_cassette('retrieve_object_attribute') do
 			do_creator = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","creator")
@@ -26,7 +26,25 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		 	assert_equal "20.5000.1025/60c6d277a8bd81de7fdd", do_creator
 		end
 	 end
-	  # pending testing of get payload, other attributes
+	# pending testing of get payload, other attributes
+	# 2.1 test retrieve object annotations, variant of  retrieve object by ID
+	def test_retrieve_object_annotations
+		VCR.use_cassette('retrieve_object_annotations') do
+			do_annotations = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","Annotations")
+			# Check object creator
+		 	assert_equal "preservation=\"dry specimen\" sampletype=\"leaves and stem nodes\" storage =\"mounted\" collectiongroup=\"herbarium sheet\"", do_annotations
+			puts do_annotations
+		end
+	 end
+	
+	# 2.2 test retrieve object images, variant of  retrieve object by ID
+	def test_retrieve_object_images
+		VCR.use_cassette('retrieve_object_images') do
+			do_images = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","availableImages")
+			# Check object creator
+		 	assert_equal "BGBM", do_images[0][0]
+		end
+	 end
 	  
 	  # 3 test create an object by type
 	  def test_create_object_by_type
@@ -94,6 +112,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	      assert_equal 5, list_cdo["pageSize"]
 	      assert_equal 7, list_cdo["size"]
 	      assert_equal Array, list_cdo["results"].class
+	      puts  list_cdo["results"]
 	    end
 	  end
 	  # 8 test retrieves an object via the Handle System web proxy

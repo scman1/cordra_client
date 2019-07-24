@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://nsidr.org:8080/objects/20.5000.1025/B100003484?jsonPointer=/Annotations
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Jul 2019 09:17:12 GMT
+      Request-Id:
+      - caeeae51cdbd
+      X-Permission:
+      - READ
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Content-Length:
+      - '113'
+    body:
+      encoding: ASCII-8BIT
+      string: '"preservation=\"dry specimen\" sampletype=\"leaves and stem nodes\"
+        storage =\"mounted\" collectiongroup=\"herbarium sheet\""'
+    http_version: 
+  recorded_at: Wed, 24 Jul 2019 09:17:12 GMT
+recorded_with: VCR 4.0.0
