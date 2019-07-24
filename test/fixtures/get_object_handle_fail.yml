@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://hdl.handle.net/20.5000.1025/BMNHE1613533
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '1068'
+      Date:
+      - Wed, 22 May 2019 13:01:21 GMT
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n<html>\n<head>\n<title>Not
+        Found</title>\n</head>\n<body bgcolor=\"#ffffff\">\n\n<img src=\"/static/images/res_tool.gif\"
+        width=\"270\" height=\"40\" alt=\"Handle.net Logo\">\n\n\n\n\n\n<!-- No status
+        message was provided by the namespace-->\n<h3>Error - Not Found</h3><p></p>\n\n<p>The
+        handle you requested -- </p> <p><b><i>20.5000.1025/BMNHE1613533</i></b></p>\n<p>--
+        cannot be found.</p>\n\n<p>Please <a href=\"mailto:hdladmin@cnri.reston.va.us?subject=Handle%20Not%20Found&body=The%20following%20handle%20was%20not%20found:%0D%0A20.5000.1025%2FBMNHE1613533.%20%0D%0AThe%20referring%20page%20was:%20%0D%0A\">contact
+        us</a> if you wish to report this error.  Please include information regarding
+        where you found the handle <br></p>\n\n\n\n\n\n<!--\nHAS_NS_MSG -> \nNS_STATUS_MSG
+        -> \nNS_STATUS -> active\n\n-->\n\n<hr noshade width=\"80%\" size=\"1\">\n<br><br>\n<p><strong><em><small>\n<a
+        href=\"/help.html\">Handle Proxy Server Documentation</a><br/>\n<a href=\"http://www.handle.net/\">Handle.net
+        Web Site</a>\n</small>\n</em></strong></p>\n</body></html>\n"
+    http_version: 
+  recorded_at: Wed, 22 May 2019 13:01:22 GMT
+recorded_with: VCR 4.0.0

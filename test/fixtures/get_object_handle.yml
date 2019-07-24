@@ -21,18 +21,18 @@ http_interactions:
       Location:
       - http://131.251.172.30:8080/#objects/20.5000.1025/B100003484
       Expires:
-      - Thu, 11 Apr 2019 14:57:02 GMT
+      - Thu, 23 May 2019 14:48:28 GMT
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
       - '203'
       Date:
-      - Wed, 10 Apr 2019 14:57:01 GMT
+      - Wed, 22 May 2019 14:48:27 GMT
     body:
       encoding: UTF-8
       string: |-
         <html><head><title>Handle Redirect</title></head>
         <body><a href="http://131.251.172.30:8080/#objects/20.5000.1025/B100003484">http://131.251.172.30:8080/#objects/20.5000.1025/B100003484</a></body></html>
     http_version: 
-  recorded_at: Wed, 10 Apr 2019 14:57:01 GMT
+  recorded_at: Wed, 22 May 2019 14:48:28 GMT
 recorded_with: VCR 4.0.0
