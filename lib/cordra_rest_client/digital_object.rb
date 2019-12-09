@@ -155,6 +155,36 @@ module CordraRestClient
 		def self.get_schema(schema_type="")
 			conn= Faraday.get("#{API_URL}schemas/#{schema_type}")
 		end
+
+		# retrieve the results of calling an instance method of the object ID
+		# id: id of the object to call one of its instance method
+		# method_name: name of the instance method to run
+		# data: data of the event to process (not all methods required it)
+		# credentials: username and password for authentication (not all methods require it)
+		def self.call_instance_method(id, method_name, data, credentials)
+			conn = Faraday.new(:url => API_URL)
+
+			unless credentials.nil?
+				conn.basic_auth(credentials["username"], credentials["password"])
+			end
+
+			response = conn.post do |req|
+				req.url "/call/?objectId=#{id}&method=#{method_name}"
+				unless data.nil?
+					req.headers['Content-Type'] = 'application/json'
+					req.body = data.to_json
+				end
+			end
+			out = JSON.parse(response.body)
+			if out.nil?
+				out = {}
+			end
+			out [:code] = response.status
+			if response.status == 200
+				out["message"] = "OK"
+			end
+			return out
+		end
 	end
 	#create objects dinamically
 	class DigitalObjectFactory

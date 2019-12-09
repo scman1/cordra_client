@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://nsidr.org:8080/call/?method=getProvenanceRecords&objectId=20.5000.1025/82752031921751eb6ab9
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.1
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 09 Dec 2019 10:41:26 GMT
+      Request-Id:
+      - 2156be883e43
+      Content-Type:
+      - application/json;charset=utf-8
+      Vary:
+      - Accept-Encoding, User-Agent
+      Content-Length:
+      - '752'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"20.5000.1025/82752031921751eb6ab9","type":"DigitalSpecimen","content":{"id":"20.5000.1025/82752031921751eb6ab9","creationdatetime":"2019-12-09T10:27:19.086Z","creator":"20.5000.1025/d298a8c18cb62ee602b8","midslevel":1,"scientificName":"test
+        testing","authorReference":"Francisco Quevedo","institutionCode":"cu","physicalSpecimenId":"abc"},"metadata":{"createdOn":1575887239086,"createdBy":"20.5000.1025/d298a8c18cb62ee602b8","modifiedOn":1575887337172,"modifiedBy":"20.5000.1025/d298a8c18cb62ee602b8","txnId":1575887337165043,"internalMetadata":{}},"provenanceRecords":[{"id":"prov.994/6f1d834e491f5adedf43","type":"EventProvenanceRecord","attributes":{"content":{"id":"prov.994/6f1d834e491f5adedf43","eventTypeId":"prov.994/6e157c5da4410b7e9de8","entityId":"20.5000.1025/82752031921751eb6ab9","agentId":"20.5000.1025/d298a8c18cb62ee602b8","roleId":"20.5000.1025/808d7dca8a74d84af27a","timestamp":1575887239086,"description":"Digital
+        object created","revisionId":"20.5000.1025/e3880e4fb65cdd776e66"},"metadata":{"createdOn":1575887242965,"createdBy":"admin","modifiedOn":1575887242965,"modifiedBy":"admin","txnId":1575887242966056}},"elements":[]},{"id":"prov.994/f77f8f04c54a40440a57","type":"EventProvenanceRecord","attributes":{"content":{"id":"prov.994/f77f8f04c54a40440a57","eventTypeId":"prov.994/fb91e24fa52d8d2b3293","entityId":"20.5000.1025/82752031921751eb6ab9","agentId":"20.5000.1025/d298a8c18cb62ee602b8","roleId":"20.5000.1025/808d7dca8a74d84af27a","timestamp":1575887337172,"description":"Digital
+        object updated","data":{"changes":{"onlyOnLeft":{"/authorReference":"Francisco
+        Quevedo"},"onlyOnRight":{},"differences":{}}},"revisionId":"20.5000.1025/d4ac83f22116a847c029"},"metadata":{"createdOn":1575887341060,"createdBy":"admin","modifiedOn":1575887341060,"modifiedBy":"admin","txnId":1575887341060058}},"elements":[]},{"id":"prov.994/612dffb3d9905d10fac1","type":"EventProvenanceRecord","attributes":{"content":{"id":"prov.994/612dffb3d9905d10fac1","eventTypeId":"prov.994/46b7c3b13faa76b5af0f","entityId":"20.5000.1025/82752031921751eb6ab9","agentId":"20.5000.1025/d298a8c18cb62ee602b8","timestamp":1575887494000,"description":"Specimen
+        deposit in museum for exhibition","data":{"museumId":"20.5000.1025/2fd4b4e4525def2122bb"}},"metadata":{"createdOn":1575887721625,"createdBy":"admin","modifiedOn":1575887721625,"modifiedBy":"admin","txnId":1575887721628059}},"elements":[]}]}'
+    http_version: 
+  recorded_at: Mon, 09 Dec 2019 10:41:26 GMT
+recorded_with: VCR 5.0.0
