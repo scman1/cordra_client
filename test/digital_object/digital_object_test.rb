@@ -295,5 +295,17 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		end
 	end
 
+	def test_advanced_search
+		VCR.use_cassette('advanced_search') do
+			query = "type:DigitalSpecimen AND /scientificName:\"Profundiconus profundorum\""
+			page = 0
+			page_size = 50
+			list_cdo = CordraRestClient::DigitalObject.advanced_search(query,page,page_size)
+
+			# Check that its has at least one provenance record and the first one was for a create event
+			assert_equal true, list_cdo["results"].length<=page_size
+		end
+	end
+
 end
 

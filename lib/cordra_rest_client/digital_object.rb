@@ -104,7 +104,17 @@ module CordraRestClient
 			response = Faraday.get(s_uri)
 			results = JSON.parse(response.body)	  
 		end
-		
+
+		# search for objects
+		# do_data: data of the digital object
+		# pageNum: page number to retrieve
+		# pageSize: number of records per page to retrieve
+		def self.advanced_search(query, pageNum = 0, pageSize =5)
+			s_uri="#{API_URL}objects/?query=#{query}&pageNum=#{pageNum}&pageSize=#{pageSize}"
+			response = Faraday.get(s_uri)
+			results = JSON.parse(response.body)
+		end
+
 		# retrieves an object via the Handle System web proxy
 	        # id: full id (prefix and suffix) of the object to look-up 	
 		def self.handle_find(id)
