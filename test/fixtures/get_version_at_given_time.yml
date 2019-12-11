@@ -5,7 +5,7 @@ http_interactions:
     uri: http://nsidr.org:8080/call/?method=getVersionAtGivenTime&objectId=20.5000.1025/82752031921751eb6ab9
     body:
       encoding: UTF-8
-      string: '{"timestamp":1575887300000}'
+      string: '{"timestamp":"2019-12-09T10:28:20.000Z"}'
     headers:
       User-Agent:
       - Faraday v0.17.1
@@ -21,15 +21,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 09 Dec 2019 11:48:42 GMT
+      - Wed, 11 Dec 2019 19:01:42 GMT
       Request-Id:
-      - aa5c21de410a
+      - 1a37addfe921
       Content-Type:
       - application/json;charset=utf-8
       Vary:
       - Accept-Encoding, User-Agent
       Content-Length:
-      - '478'
+      - '460'
     body:
       encoding: ASCII-8BIT
       string: |-
@@ -38,8 +38,8 @@ http_interactions:
           "type": "DigitalSpecimen",
           "attributes": {
             "content": {
-              "creationdatetime": "2019-12-09T10:24:35.255Z",
-              "creator": "admin",
+              "creationdatetime": "2019-12-09T10:27:19.086Z",
+              "creator": "20.5000.1025/d298a8c18cb62ee602b8",
               "midslevel": 1,
               "scientificName": "test testing",
               "institutionCode": "cu",
@@ -47,35 +47,27 @@ http_interactions:
               "id": "20.5000.1025/82752031921751eb6ab9"
             },
             "metadata": {
-              "createdOn": 1575887075255,
-              "createdBy": "admin",
-              "modifiedOn": 1575887075255,
-              "modifiedBy": "admin",
+              "createdOn": 1575887239086,
+              "createdBy": "20.5000.1025/d298a8c18cb62ee602b8",
+              "modifiedOn": 1575887239086,
+              "modifiedBy": "20.5000.1025/d298a8c18cb62ee602b8",
               "isVersion": true,
               "versionOf": "20.5000.1025/82752031921751eb6ab9",
               "publishedBy": "admin",
-              "publishedOn": 1575887078527,
-              "txnId": 1575887078519039
+              "publishedOn": 1575887242359,
+              "txnId": 1575887242350042
             },
             "comparisonAgainstCurrentVersion": {
               "onlyOnLeft": {},
               "onlyOnRight": {
-                "/authorReference": "Francisco Quevedo"
+                "/authorReference": "Francisco Jose Quevedo Fernandez",
+                "/country": "Spain"
               },
-              "differences": {
-                "/creationdatetime": {
-                  "left": "2019-12-09T10:24:35.255Z",
-                  "right": "2019-12-09T10:27:19.086Z"
-                },
-                "/creator": {
-                  "left": "admin",
-                  "right": "20.5000.1025/d298a8c18cb62ee602b8"
-                }
-              }
+              "differences": {}
             }
           },
           "elements": []
         }
     http_version: 
-  recorded_at: Mon, 09 Dec 2019 11:48:42 GMT
+  recorded_at: Wed, 11 Dec 2019 19:01:42 GMT
 recorded_with: VCR 5.0.0

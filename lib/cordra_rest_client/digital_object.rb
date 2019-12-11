@@ -196,6 +196,7 @@ module CordraRestClient
 			return out
 		end
 	end
+
 	#create objects dinamically
 	class DigitalObjectFactory
 		def self.create_class(new_class, *fields)

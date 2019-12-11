@@ -265,7 +265,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	# 16 test call instance method to get the version of digital object at a given time (it doesn't required authentication but it needs data)
 	def test_call_instance_get_version_at_given_time
 		VCR.use_cassette('get_version_at_given_time') do
-			data = {'timestamp' => 1575887300000}
+			data = {'timestamp' => "2019-12-09T10:28:20.000Z"}
 			cdo = CordraRestClient::DigitalObject.call_instance_method("20.5000.1025/82752031921751eb6ab9","getVersionAtGivenTime",data,nil)
 
 			# Because we have requested the version before the object was modified, the response should contain the attribute "comparisonAgainstCurrentVersion"
@@ -282,7 +282,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 								"eventTypeId":"prov.994/46b7c3b13faa76b5af0f",
 								"agentId":"20.5000.1025/d298a8c18cb62ee602b8",
 								"roleId":"20.5000.1025/808d7dca8a74d84af27a",
-								"timestamp": (Time.now.to_f * 1000).to_i,
+								"timestamp": DateTime.now.strftime("%Y-%m-%dT%H:%M:%S.%LZ"),
 								"description":"Testing: Specimen deposit in museum for exhibition",
 								"data":{
 										"museumId":"20.5000.1025/2fd4b4e4525def2122bb"
@@ -295,6 +295,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		end
 	end
 
+	# 18 test advanced search to retrieve list of digital objects
 	def test_advanced_search
 		VCR.use_cassette('advanced_search') do
 			query = "type:DigitalSpecimen AND /scientificName:\"Profundiconus profundorum\""
