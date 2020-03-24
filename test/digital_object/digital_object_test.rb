@@ -3,6 +3,10 @@ require './test/test_helper'
 
 class CordraRestClientDigitalObjectTest < Minitest::Test
 
+	API_URL = "http://nsidr.org:8080/"
+	API_HANDLE = "http://hdl.handle.net/"
+	CORDRA_PREFIX = "20.5000.1025"
+
 	# 0 basic test
 	def test_exists
 		assert CordraRestClient::DigitalObject
@@ -11,27 +15,27 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	# 1 test retrieve object by ID
 	def test_retrieve_object_by_id
 		VCR.use_cassette('retrieve_object_id') do
-			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
+			cdo = CordraRestClient::DigitalObject.find(API_URL,"#{CORDRA_PREFIX}/B100003484")
 			assert_equal CordraRestClient::DigitalObject, cdo.class
 
 			# Check that fields are accessible
-			assert_equal "20.5000.1025/B100003484", cdo.id
+			assert_equal "#{CORDRA_PREFIX}/B100003484", cdo.id
 			assert_equal "Digital Specimen", cdo.type
 		end
 	  end
 	# 2 test retrieve object creator, variant of  retrieve object by ID
 	def test_retrieve_object_creator
 		VCR.use_cassette('retrieve_object_attribute') do
-			do_creator = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","creator")
+			do_creator = CordraRestClient::DigitalObject.get_do_field(API_URL,"#{CORDRA_PREFIX}/B100003484","creator")
 			# Check object creator
-		 	assert_equal "20.5000.1025/60c6d277a8bd81de7fdd", do_creator
+		 	assert_equal "#{CORDRA_PREFIX}/60c6d277a8bd81de7fdd", do_creator
 		end
 	 end
 	# pending testing of get payload, other attributes
 	# 2.1 test retrieve object annotations, variant of  retrieve object by ID
 	def test_retrieve_object_annotations
 		VCR.use_cassette('retrieve_object_annotations') do
-			do_annotations = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","Annotations")
+			do_annotations = CordraRestClient::DigitalObject.get_do_field(API_URL,"#{CORDRA_PREFIX}/B100003484","Annotations")
 			# Check object creator
 		 	assert_equal "preservation=\"dry specimen\" sampletype=\"leaves and stem nodes\" storage =\"mounted\" collectiongroup=\"herbarium sheet\"", do_annotations
 			puts do_annotations
@@ -41,7 +45,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	# 2.2 test retrieve object images, variant of  retrieve object by ID
 	def test_retrieve_object_images
 		VCR.use_cassette('retrieve_object_images') do
-			do_images = CordraRestClient::DigitalObject.get_do_field("20.5000.1025/B100003484","availableImages")
+			do_images = CordraRestClient::DigitalObject.get_do_field(API_URL,"#{CORDRA_PREFIX}/B100003484","availableImages")
 			# Check object creator
 		 	assert_equal "BGBM", do_images[0][0]
 		end
@@ -52,7 +56,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	    VCR.use_cassette('create_object') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
 	          json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
-		  result=CordraRestClient::DigitalObject.create(json["identifier"],"Digital Specimen",json, cred["uc_1"])
+		  result=CordraRestClient::DigitalObject.create(API_URL, json["identifier"],"Digital Specimen",json, cred["uc_1"])
 
 		  #check that the result is saved
 		  assert_equal 200, result[:code]
@@ -67,10 +71,10 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 
 	      json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
 
-		  result=CordraRestClient::DigitalObject.create("1a0beb212baaede1c10c","Digital Specimen",json, cred["uc_1"])
+		  result=CordraRestClient::DigitalObject.create(API_URL,"1a0beb212baaede1c10c","Digital Specimen",json, cred["uc_1"])
 		  #check that the duplicate is rejected
 		  assert_equal 409, result[:code]
-		  assert_equal "Object already exists: 20.5000.1025/1a0beb212baaede1c10c", result["message"]
+		  assert_equal "Object already exists: #{CORDRA_PREFIX}/1a0beb212baaede1c10c", result["message"]
 		end
 	  end
 
@@ -81,7 +85,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		  json = JSON.parse(File.read("test/fixtures/edit_specimen.json"))
 		  id = json["id"]
 		  json["id"] = "" #id cannot be updated
-		  result=CordraRestClient::DigitalObject.update(id, json, cred["uc_1"])
+		  result=CordraRestClient::DigitalObject.update(API_URL, id, json, cred["uc_1"])
 
 		  #check that the result is saved
 		  assert_equal 200, result[:code]
@@ -93,8 +97,8 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	  def test_delete_object_by_id
 	    VCR.use_cassette('delete_object') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
-		  id = "20.5000.1025/newspecimen03"
-		  result=CordraRestClient::DigitalObject.delete(id, cred["uc_1"])
+		  id = "#{CORDRA_PREFIX}/newspecimen03"
+		  result=CordraRestClient::DigitalObject.delete(API_URL, id, cred["uc_1"])
 
 		  #check that the result is saved
 		  assert_equal 200, result[:code]
@@ -105,7 +109,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	  # 7 test search for objects
 	  def test_search_for_objects
 	    VCR.use_cassette('search_objects') do
-	      list_cdo = CordraRestClient::DigitalObject.search("Digital Specimen")
+	      list_cdo = CordraRestClient::DigitalObject.search(API_URL, "Digital Specimen")
 	      assert_equal Hash, list_cdo.class
 
 	      # Check that fields are accessible
@@ -119,7 +123,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	  # 8 test retrieves an object via the Handle System web proxy
 	  def test_retrieve_object_via_handle
 	    VCR.use_cassette('get_object_handle') do
-	      redirection = CordraRestClient::DigitalObject.handle_find("20.5000.1025/B100003484")
+	      redirection = CordraRestClient::DigitalObject.handle_find(API_HANDLE, "#{CORDRA_PREFIX}/B100003484")
 	      assert_equal String, redirection.class
 
 	      # Check that fields are accessible
@@ -134,14 +138,14 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		VCR.use_cassette('object_acl_set') do
 			cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
 			json = JSON.parse(File.read("test/fixtures/acl_list.json"))
-			id = "20.5000.1025/RMNH.RENA.44084"
-			result=CordraRestClient::DigitalObject.set_premissions(id, json, cred["uc_1"])
+			id = "#{CORDRA_PREFIX}/RMNH.RENA.44084"
+			result=CordraRestClient::DigitalObject.set_premissions(API_URL, id, json, cred["uc_1"])
 			#check that the result is saved
 			assert_equal 200, result[:code]
 			assert_equal "OK", result["message"]
 			assert_equal 4, result.length
 			assert_equal 1, result["readers"].length
-			assert_equal '20.5000.1025/1517d545cc11283e2360', result["readers"][0]
+			assert_equal '#{CORDRA_PREFIX}/1517d545cc11283e2360', result["readers"][0]
 		end
 	end
         # 10 test get object ACL
@@ -149,14 +153,14 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		VCR.use_cassette('object_acl_get') do
 			cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
 			json = JSON.parse(File.read("test/fixtures/acl_list.json"))
-			id = "20.5000.1025/RMNH.RENA.38646"
-			result=CordraRestClient::DigitalObject.get_acl(id, json, cred["uc_1"])
+			id = "#{CORDRA_PREFIX}/RMNH.RENA.38646"
+			result=CordraRestClient::DigitalObject.get_acl(API_URL, id, json, cred["uc_1"])
 
 			#check result returned
 			assert_equal 2, result.length
 			assert_equal 2, result["readers"].length
-			assert_equal '20.5000.1025/1517d545cc11283e2360', result["readers"][0]
-			assert_equal '20.5000.1025/1517d545cc11283e2360', result["writers"][0]
+			assert_equal '#{CORDRA_PREFIX}/1517d545cc11283e2360', result["readers"][0]
+			assert_equal '#{CORDRA_PREFIX}/1517d545cc11283e2360', result["writers"][0]
 		end
 	end
 
@@ -175,9 +179,9 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	def test_dynamic_build_prepare
 		VCR.use_cassette('dynamic_do_prepare') do
 			# A. get object type
-			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
+			cdo = CordraRestClient::DigitalObject.find(API_URL, "#{CORDRA_PREFIX}/B100003484")
 			# Check object type and fields are accessible
-			assert_equal "20.5000.1025/B100003484", cdo.id
+			assert_equal "#{CORDRA_PREFIX}/B100003484", cdo.id
 		 	assert_equal "Digital Specimen", cdo.type
 			# B. get schema
 			#     The schema will be used to build a DO class dinamically
@@ -197,9 +201,9 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
         def test_dynamic_do_build
 		VCR.use_cassette('dynamic_do_build') do
 			# A. get digital object
-			cdo = CordraRestClient::DigitalObject.find("20.5000.1025/B100003484")
+			cdo = CordraRestClient::DigitalObject.find(API_URL, "#{CORDRA_PREFIX}/B100003484")
 			# Check object id and type
-			assert_equal "20.5000.1025/B100003484", cdo.id
+			assert_equal "#{CORDRA_PREFIX}/B100003484", cdo.id
 		 	assert_equal "Digital Specimen", cdo.type
 			# B. get schema
 			#     The schema will be used to build a DO class dinamically
@@ -231,7 +235,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	      list_cdo["results"].each do |res|
 	        puts res["id"]
 		test_this_id= res["id"]
-		redirection = CordraRestClient::DigitalObject.handle_find(test_this_id)
+		redirection = CordraRestClient::DigitalObject.handle_find(API_HANDLE, test_this_id)
 	        assert_equal String, redirection.class
 		if redirection.match(/Handle Redirect/)
 		  assert true
@@ -240,7 +244,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 		   puts "fail"
 		end
 	      end
-	      #redirection = CordraRestClient::DigitalObject.handle_find("20.5000.1025/BMNHE1613533")
+	      #redirection = CordraRestClient::DigitalObject.handle_find(API_HANDLE, "#{CORDRA_PREFIX}/BMNHE1613533")
 	      #assert_equal String, redirection.class
 
 	      # Check that fields are accessible
@@ -252,11 +256,11 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	# 15 test call instance method to retrieve provenance records (it doesn't required authentication nor data)
 	def test_call_instance_method_get_provenance_records
 		VCR.use_cassette('get_provenance_records') do
-			cdo = CordraRestClient::DigitalObject.call_instance_method("20.5000.1025/82752031921751eb6ab9","getProvenanceRecords",nil,nil)
+			cdo = CordraRestClient::DigitalObject.call_instance_method(API_URL, "#{CORDRA_PREFIX}/82752031921751eb6ab9","getProvenanceRecords",nil,nil)
 
 			# Check that its has at least one provenance record and the first one was for a create event
 
-			assert_equal "20.5000.1025/82752031921751eb6ab9", cdo["content"]["id"]
+			assert_equal "#{CORDRA_PREFIX}/82752031921751eb6ab9", cdo["content"]["id"]
 			assert_equal true, cdo["provenanceRecords"].length()>1
 			assert_equal "prov.994/6e157c5da4410b7e9de8", cdo["provenanceRecords"][0]["attributes"]["content"]["eventTypeId"]
 		end
@@ -266,10 +270,10 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	def test_call_instance_get_version_at_given_time
 		VCR.use_cassette('get_version_at_given_time') do
 			data = {'timestamp' => "2019-12-09T10:28:20.000Z"}
-			cdo = CordraRestClient::DigitalObject.call_instance_method("20.5000.1025/82752031921751eb6ab9","getVersionAtGivenTime",data,nil)
+			cdo = CordraRestClient::DigitalObject.call_instance_method(API_URL, "#{CORDRA_PREFIX}/82752031921751eb6ab9","getVersionAtGivenTime",data,nil)
 
 			# Because we have requested the version before the object was modified, the response should contain the attribute "comparisonAgainstCurrentVersion"
-			assert_equal "20.5000.1025/82752031921751eb6ab9", cdo["id"]
+			assert_equal "#{CORDRA_PREFIX}/82752031921751eb6ab9", cdo["id"]
 			assert_equal true, cdo["attributes"].key?("comparisonAgainstCurrentVersion")
 		end
 	end
@@ -280,18 +284,18 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
 			data = {
 								"eventTypeId":"prov.994/46b7c3b13faa76b5af0f",
-								"agentId":"20.5000.1025/d298a8c18cb62ee602b8",
-								"roleId":"20.5000.1025/808d7dca8a74d84af27a",
+								"agentId":"#{CORDRA_PREFIX}/d298a8c18cb62ee602b8",
+								"roleId":"#{CORDRA_PREFIX}/808d7dca8a74d84af27a",
 								"timestamp": DateTime.now.strftime("%Y-%m-%dT%H:%M:%S.%LZ"),
 								"description":"Testing: Specimen deposit in museum for exhibition",
 								"data":{
-										"museumId":"20.5000.1025/2fd4b4e4525def2122bb"
+										"museumId":"#{CORDRA_PREFIX}/2fd4b4e4525def2122bb"
 								}
 							}
-			cdo = CordraRestClient::DigitalObject.call_instance_method("20.5000.1025/82752031921751eb6ab9","processEvent",data,cred)
+			cdo = CordraRestClient::DigitalObject.call_instance_method(API_URL, "#{CORDRA_PREFIX}/82752031921751eb6ab9","processEvent",data,cred)
 
 			# Check that its has at least one provenance record and the first one was for a create event
-			assert_equal "20.5000.1025/82752031921751eb6ab9", cdo["id"]
+			assert_equal "#{CORDRA_PREFIX}/82752031921751eb6ab9", cdo["id"]
 		end
 	end
 

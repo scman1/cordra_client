@@ -2,9 +2,6 @@
 require 'faraday'
 require 'json'
 
-API_URL = "http://nsidr.org:8080/"
-API_HANDLE = "http://hdl.handle.net/"
-
 module CordraRestClient
 	class DigitalObject
 		# digital object attributes 
@@ -20,8 +17,8 @@ module CordraRestClient
 		
 		# retrieves an object by ID
 		# id: id of the object to retrieve 
-		def self.find(id)
-			response = Faraday.get("#{API_URL}objects/#{id}?full=true")
+		def self.find(api_url, id)
+			response = Faraday.get("#{api_url}objects/#{id}?full=true")
 			digital_object = JSON.parse(response.body)
 			DigitalObject.new(digital_object )
 		end
@@ -29,8 +26,8 @@ module CordraRestClient
 		# retrieves an objects attribute by object ID
 		# id: id of the object to retrieve 
 		# field: name of attribute to retrieve
-		def self.get_do_field(id, field)
-			response = Faraday.get("#{API_URL}objects/#{id}?jsonPointer=/#{field}")
+		def self.get_do_field(api_url, id, field)
+			response = Faraday.get("#{api_url}objects/#{id}?jsonPointer=/#{field}")
 			attributes = JSON.parse(response.body)
 		end
 
@@ -39,8 +36,8 @@ module CordraRestClient
 		# do_type: type of digital object
 		# do_data: data of the digital object
 		# credentials: username and password for authentication
-		def self.create(id, do_type, do_data, credentials)
-			conn = Faraday.new(:url => API_URL)
+		def self.create(api_url, id, do_type, do_data, credentials)
+			conn = Faraday.new(:url => api_url)
 			conn.basic_auth(credentials["username"], credentials["password"])
 		  
 			response = conn.post do |req|
@@ -49,7 +46,7 @@ module CordraRestClient
 				req.body = do_data.to_json
 			end
 			out = JSON.parse(response.body)
-			out [:code] = response.status
+			out[:code] = response.status
 			if response.status == 200
 				out["message"] = "OK"	  
 			end
@@ -60,8 +57,8 @@ module CordraRestClient
 		# id: full id (prefix and suffix) of the object to update 
 		# do_data: data of the digital object
 		# credentials: username and password for authentication
-		def self.update(id, do_data, credentials)
-			conn = Faraday.new(:url => API_URL)
+		def self.update(api_url, id, do_data, credentials)
+			conn = Faraday.new(:url => api_url)
 
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.put do |req|
@@ -70,7 +67,7 @@ module CordraRestClient
 				req.body = do_data.to_json
 			end
 			out = JSON.parse(response.body)
-			out [:code] = response.status
+			out[:code] = response.status
 			if response.status == 200
 				out["message"] = "OK"	  
 			end
@@ -80,15 +77,15 @@ module CordraRestClient
 		# delete an object
 		# id: full id (prefix and suffix) of the object to delete 
 		# credentials: username and password for authentication
-		def self.delete(id, credentials)
-			conn = Faraday.new(:url => API_URL)
+		def self.delete(api_url, id, credentials)
+			conn = Faraday.new(:url => api_url)
 
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.delete do |req|
 				req.url "/objects/#{id}"
 			end
 			out = JSON.parse(response.body)
-			out [:code] = response.status
+			out[:code] = response.status
 			if response.status == 200
 				out["message"] = "OK"	  
 			end
@@ -99,8 +96,8 @@ module CordraRestClient
 		# do_data: data of the digital object
 		# pageNum: page number to retrieve
 		# pageSize: number of records per page to retrieve
-		def self.search(do_type, pageNum = 0, pageSize =5)
-			s_uri="#{API_URL}objects/?query=type:\"#{do_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}"
+		def self.search(api_url, do_type, pageNum = 0, pageSize =5)
+			s_uri="#{api_url}objects/?query=type:\"#{do_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}"
 			response = Faraday.get(s_uri)
 			results = JSON.parse(response.body)	  
 		end
@@ -109,16 +106,16 @@ module CordraRestClient
 		# do_data: data of the digital object
 		# pageNum: page number to retrieve
 		# pageSize: number of records per page to retrieve
-		def self.advanced_search(query, pageNum = 0, pageSize =5)
-			s_uri="#{API_URL}objects/?query=#{query}&pageNum=#{pageNum}&pageSize=#{pageSize}"
+		def self.advanced_search(api_url, query, pageNum = 0, pageSize =5)
+			s_uri="#{api_url}objects/?query=#{query}&pageNum=#{pageNum}&pageSize=#{pageSize}"
 			response = Faraday.get(s_uri)
 			results = JSON.parse(response.body)
 		end
 
 		# retrieves an object via the Handle System web proxy
 	        # id: full id (prefix and suffix) of the object to look-up 	
-		def self.handle_find(id)
-			response = Faraday.get("#{API_HANDLE}#{id}")
+		def self.handle_find(handle_url, id)
+			response = Faraday.get("#{handle_url}#{id}")
 			#the body contains the re-direction
 		       response.body
 		end
@@ -127,8 +124,8 @@ module CordraRestClient
 		# allows modifying the read/write persmissions of a specific object
 		# id: id of the object to set persmissions on
 		# rw_data: two arrays containing ids of users getting r/w persmissions
-		def self.set_premissions(id,rw_data, credentials)
-			conn = Faraday.new(:url => API_URL)
+		def self.set_premissions(api_url, id,rw_data, credentials)
+			conn = Faraday.new(:url => api_url)
 
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.put do |req|
@@ -137,7 +134,7 @@ module CordraRestClient
 				req.body = rw_data.to_json
 			end
 			out = JSON.parse(response.body)
-			out [:code] = response.status
+			out[:code] = response.status
 			if response.status == 200
 				out["message"] = "OK"
 			end
@@ -148,8 +145,8 @@ module CordraRestClient
 		# allows modifying the read/write persmissions of a specific object
 		# id: id of the object to set persmissions on
 		# rw_data: two arrays containing ids of users getting r/w persmissions
-		def self.get_acl(id, rw_data, credentials)
-			conn= Faraday.new(:url => API_URL)
+		def self.get_acl(api_url, id, rw_data, credentials)
+			conn= Faraday.new(:url => api_url)
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.get do |req|
 				req.url "/acls/#{id}"
@@ -162,8 +159,8 @@ module CordraRestClient
 		
 		# retrieve a schema
 		# schema_type: the schema to retrieve, if empty returns all schemas
-		def self.get_schema(schema_type="")
-			conn= Faraday.get("#{API_URL}schemas/#{schema_type}")
+		def self.get_schema(api_url, schema_type="")
+			conn= Faraday.get("#{api_url}schemas/#{schema_type}")
 		end
 
 		# retrieve the results of calling an instance method of the object ID
@@ -171,8 +168,8 @@ module CordraRestClient
 		# method_name: name of the instance method to run
 		# data: data of the event to process (not all methods required it)
 		# credentials: username and password for authentication (not all methods require it)
-		def self.call_instance_method(id, method_name, data, credentials)
-			conn = Faraday.new(:url => API_URL)
+		def self.call_instance_method(api_url, id, method_name, data, credentials)
+			conn = Faraday.new(:url => api_url)
 
 			unless credentials.nil?
 				conn.basic_auth(credentials["username"], credentials["password"])
@@ -189,7 +186,7 @@ module CordraRestClient
 			if out.nil?
 				out = {}
 			end
-			out [:code] = response.status
+			out[:code] = response.status
 			if response.status == 200
 				out["message"] = "OK"
 			end
