@@ -20,7 +20,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 
 			# Check that fields are accessible
 			assert_equal "#{CORDRA_PREFIX}/B100003484", cdo.id
-			assert_equal "Digital Specimen", cdo.type
+			assert_equal "DigitalSpecimen", cdo.type
 		end
 	  end
 	# 2 test retrieve object creator, variant of  retrieve object by ID
@@ -56,7 +56,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	    VCR.use_cassette('create_object') do
 		  cred=JSON.parse(YAML::load_file('test/fixtures/credential.yml').to_json)
 	          json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
-		  result=CordraRestClient::DigitalObject.create(API_URL, json["identifier"],"Digital Specimen",json, cred["uc_1"])
+		  result=CordraRestClient::DigitalObject.create(API_URL, json["identifier"],"DigitalSpecimen",json, cred["uc_1"])
 
 		  #check that the result is saved
 		  assert_equal 200, result[:code]
@@ -71,7 +71,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 
 	      json = JSON.parse(File.read("test/fixtures/new_specimen.json"))
 
-		  result=CordraRestClient::DigitalObject.create(API_URL,"1a0beb212baaede1c10c","Digital Specimen",json, cred["uc_1"])
+		  result=CordraRestClient::DigitalObject.create(API_URL,"1a0beb212baaede1c10c","DigitalSpecimen",json, cred["uc_1"])
 		  #check that the duplicate is rejected
 		  assert_equal 409, result[:code]
 		  assert_equal "Object already exists: #{CORDRA_PREFIX}/1a0beb212baaede1c10c", result["message"]
@@ -109,7 +109,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	  # 7 test search for objects
 	  def test_search_for_objects
 	    VCR.use_cassette('search_objects') do
-	      list_cdo = CordraRestClient::DigitalObject.search(API_URL, "Digital Specimen")
+	      list_cdo = CordraRestClient::DigitalObject.search(API_URL, "DigitalSpecimen")
 	      assert_equal Hash, list_cdo.class
 
 	      # Check that fields are accessible
@@ -167,12 +167,11 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	# 11. test get object schema
 	def test_modify_object_permissions
 		VCR.use_cassette('get_schema') do
-			schema_type="Digital%20Specimen"
-			result=CordraRestClient::DigitalObject.get_schema(schema_type)
-			do_schema = JSON.parse(result.body)
+			schema_type="DigitalSpecimen"
+			do_schema=CordraRestClient::DigitalObject.get_schema(API_URL, schema_type)
 			# check that the right schema was delivered
 			assert_equal "object", do_schema["type"]
-			assert_equal "Digital Specimen", do_schema["title"]
+			assert_equal "DigitalSpecimen", do_schema["title"]
 		end
 	end
         #12. prepare dynamic creation of DO
@@ -182,14 +181,13 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			cdo = CordraRestClient::DigitalObject.find(API_URL, "#{CORDRA_PREFIX}/B100003484")
 			# Check object type and fields are accessible
 			assert_equal "#{CORDRA_PREFIX}/B100003484", cdo.id
-		 	assert_equal "Digital Specimen", cdo.type
+		 	assert_equal "DigitalSpecimen", cdo.type
 			# B. get schema
 			#     The schema will be used to build a DO class dinamically
-			result=CordraRestClient::DigitalObject.get_schema(cdo.type.gsub(" ","%20"))
-			do_schema = JSON.parse(result.body)
+			do_schema=CordraRestClient::DigitalObject.get_schema(API_URL, cdo.type.gsub(" ","%20"))
 			# check that the result is saved
 			assert_equal "object", do_schema["type"]
-			assert_equal "Digital Specimen", do_schema["title"]
+			assert_equal "DigitalSpecimen", do_schema["title"]
 			# build new class using schema
 			# the DO contents are a hash
 			assert_equal Hash,  cdo.content.class
@@ -204,14 +202,13 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			cdo = CordraRestClient::DigitalObject.find(API_URL, "#{CORDRA_PREFIX}/B100003484")
 			# Check object id and type
 			assert_equal "#{CORDRA_PREFIX}/B100003484", cdo.id
-		 	assert_equal "Digital Specimen", cdo.type
+		 	assert_equal "DigitalSpecimen", cdo.type
 			# B. get schema
 			#     The schema will be used to build a DO class dinamically
-			result=CordraRestClient::DigitalObject.get_schema(cdo.type.gsub(" ","%20"))
-			do_schema = JSON.parse(result.body)
+			do_schema=CordraRestClient::DigitalObject.get_schema(API_URL, cdo.type.gsub(" ","%20"))
 			# check that the result is saved
 			assert_equal "object", do_schema["type"]
-			assert_equal "Digital Specimen", do_schema["title"]
+			assert_equal "DigitalSpecimen", do_schema["title"]
 			# C. build new class using schema
 			do_properties = do_schema["properties"].keys
 			do_c = CordraRestClient::DigitalObjectFactory.create_class cdo.type.gsub(" ",""), do_properties
@@ -230,7 +227,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 	#14
 	def test_retrieve_objects_via_handle
 	    VCR.use_cassette('get_objects_handle') do
-	      list_cdo = CordraRestClient::DigitalObject.search("Digital Specimen",0,20)
+	      list_cdo = CordraRestClient::DigitalObject.search(API_URL,"DigitalSpecimen",0,20)
 	      puts list_cdo["results"].length
 	      list_cdo["results"].each do |res|
 	        puts res["id"]
@@ -305,7 +302,7 @@ class CordraRestClientDigitalObjectTest < Minitest::Test
 			query = "type:DigitalSpecimen AND /scientificName:\"Profundiconus profundorum\""
 			page = 0
 			page_size = 50
-			list_cdo = CordraRestClient::DigitalObject.advanced_search(query,page,page_size)
+			list_cdo = CordraRestClient::DigitalObject.advanced_search(API_URL, query,page,page_size)
 
 			# Check that its has at least one provenance record and the first one was for a create event
 			assert_equal true, list_cdo["results"].length<=page_size

@@ -16,28 +16,45 @@ module CordraRestClient
 		end
 		
 		# retrieves an object by ID
-		# id: id of the object to retrieve 
-		def self.find(api_url, id)
-			response = Faraday.get("#{api_url}objects/#{id}?full=true")
+		# api_url: url
+		# id: id of the object to retrieve
+		# credentials: username and password for authentication (optional)
+		def self.find(api_url, id, credentials = nil)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
+			unless credentials.nil?
+				conn.basic_auth(credentials["username"], credentials["password"])
+			end
+			response = conn.get do |req|
+				req.url "/objects/#{id}?full=true"
+			end
 			digital_object = JSON.parse(response.body)
-			DigitalObject.new(digital_object )
+			return DigitalObject.new(digital_object )
 		end
 	  
 		# retrieves an objects attribute by object ID
+		# api_url: url
 		# id: id of the object to retrieve 
 		# field: name of attribute to retrieve
-		def self.get_do_field(api_url, id, field)
-			response = Faraday.get("#{api_url}objects/#{id}?jsonPointer=/#{field}")
-			attributes = JSON.parse(response.body)
+		# credentials: username and password for authentication (optional)
+		def self.get_do_field(api_url, id, field, credentials = nil)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
+			unless credentials.nil?
+				conn.basic_auth(credentials["username"], credentials["password"])
+			end
+			response = conn.get do |req|
+				req.url "/objects/#{id}?jsonPointer=/#{field}"
+			end
+			return JSON.parse(response.body)
 		end
 
 		# create an object by type
+		# api_url: url
 		# id: suffix of the object to create 
 		# do_type: type of digital object
 		# do_data: data of the digital object
 		# credentials: username and password for authentication
 		def self.create(api_url, id, do_type, do_data, credentials)
-			conn = Faraday.new(:url => api_url)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
 			conn.basic_auth(credentials["username"], credentials["password"])
 		  
 			response = conn.post do |req|
@@ -54,11 +71,12 @@ module CordraRestClient
 		end
 		
 		# update an object by ID
+		# api_url: url
 		# id: full id (prefix and suffix) of the object to update 
 		# do_data: data of the digital object
 		# credentials: username and password for authentication
 		def self.update(api_url, id, do_data, credentials)
-			conn = Faraday.new(:url => api_url)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
 
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.put do |req|
@@ -75,10 +93,11 @@ module CordraRestClient
 		end
 		
 		# delete an object
+		# api_url: url
 		# id: full id (prefix and suffix) of the object to delete 
 		# credentials: username and password for authentication
 		def self.delete(api_url, id, credentials)
-			conn = Faraday.new(:url => api_url)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
 
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.delete do |req|
@@ -93,38 +112,53 @@ module CordraRestClient
 		end
 		
 		# search for objects
-		# do_data: data of the digital object
+		# api_url: url
+		# do_type: type of the digital object
 		# pageNum: page number to retrieve
 		# pageSize: number of records per page to retrieve
-		def self.search(api_url, do_type, pageNum = 0, pageSize =5)
-			s_uri="#{api_url}objects/?query=type:\"#{do_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}"
-			response = Faraday.get(s_uri)
+		# credentials: username and password for authentication (optional)
+		def self.search(api_url, do_type, pageNum = 0, pageSize =5, credentials = nil)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
+			unless credentials.nil?
+				conn.basic_auth(credentials["username"], credentials["password"])
+			end
+			response = conn.get do |req|
+				req.url "/objects/?query=type:\"#{do_type}\"&pageNum=#{pageNum}&pageSize=#{pageSize}"
+			end
 			results = JSON.parse(response.body)	  
 		end
 
 		# search for objects
-		# do_data: data of the digital object
+		# api_url: url
+		# query: query
 		# pageNum: page number to retrieve
 		# pageSize: number of records per page to retrieve
-		def self.advanced_search(api_url, query, pageNum = 0, pageSize =5)
-			s_uri="#{api_url}objects/?query=#{query}&pageNum=#{pageNum}&pageSize=#{pageSize}"
-			response = Faraday.get(s_uri)
-			results = JSON.parse(response.body)
+		# credentials: username and password for authentication (optional)
+		def self.advanced_search(api_url, query, pageNum = 0, pageSize =5, credentials = nil)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
+			unless credentials.nil?
+				conn.basic_auth(credentials["username"], credentials["password"])
+			end
+			response = conn.get do |req|
+				req.url "/objects/?query=#{query}&pageNum=#{pageNum}&pageSize=#{pageSize}"
+			end
+			return JSON.parse(response.body)
 		end
 
 		# retrieves an object via the Handle System web proxy
-	        # id: full id (prefix and suffix) of the object to look-up 	
+		# id: full id (prefix and suffix) of the object to look-up
 		def self.handle_find(handle_url, id)
 			response = Faraday.get("#{handle_url}#{id}")
 			#the body contains the re-direction
-		       response.body
+			return response.body
 		end
 		
-		# modify object ACL
-		# allows modifying the read/write persmissions of a specific object
+		# modify object ACL, allowing changing the read/write permissions of a specific object
+		# api_url: url
 		# id: id of the object to set persmissions on
 		# rw_data: two arrays containing ids of users getting r/w persmissions
-		def self.set_premissions(api_url, id,rw_data, credentials)
+		# credentials: username and password for authentication
+		def self.set_premissions(api_url, id, rw_data, credentials)
 			conn = Faraday.new(:url => api_url)
 
 			conn.basic_auth(credentials["username"], credentials["password"])
@@ -142,9 +176,10 @@ module CordraRestClient
 		end
 		
 		# get object ACL
-		# allows modifying the read/write persmissions of a specific object
+		# api_url: url
 		# id: id of the object to set persmissions on
 		# rw_data: two arrays containing ids of users getting r/w persmissions
+		# credentials: username and password for authentication
 		def self.get_acl(api_url, id, rw_data, credentials)
 			conn= Faraday.new(:url => api_url)
 			conn.basic_auth(credentials["username"], credentials["password"])
@@ -158,23 +193,31 @@ module CordraRestClient
 		end
 		
 		# retrieve a schema
+		# api_url: url
 		# schema_type: the schema to retrieve, if empty returns all schemas
-		def self.get_schema(api_url, schema_type="")
-			conn= Faraday.get("#{api_url}schemas/#{schema_type}")
-		end
-
-		# retrieve the results of calling an instance method of the object ID
-		# id: id of the object to call one of its instance method
-		# method_name: name of the instance method to run
-		# data: data of the event to process (not all methods required it)
-		# credentials: username and password for authentication (not all methods require it)
-		def self.call_instance_method(api_url, id, method_name, data, credentials)
-			conn = Faraday.new(:url => api_url)
-
+		# credentials: username and password for authentication (optional)
+		def self.get_schema(api_url, schema_type = "", credentials = nil)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
 			unless credentials.nil?
 				conn.basic_auth(credentials["username"], credentials["password"])
 			end
+			response = conn.get do |req|
+				req.url "/schemas/#{schema_type}"
+			end
+			return JSON.parse(response.body)
+		end
 
+		# retrieve the results of calling an instance method of the object ID
+		# api_url: url
+		# id: id of the object to call one of its instance method
+		# method_name: name of the instance method to run
+		# data: data of the event to process (not all methods required it)
+		# credentials: username and password for authentication
+		def self.call_instance_method(api_url, id, method_name, data, credentials)
+			conn = Faraday.new(:url => api_url)
+			unless credentials.nil?
+				conn.basic_auth(credentials["username"], credentials["password"])
+			end
 			response = conn.post do |req|
 				req.url "/call/?objectId=#{id}&method=#{method_name}"
 				unless data.nil?
