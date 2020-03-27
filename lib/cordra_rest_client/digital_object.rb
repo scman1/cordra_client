@@ -159,7 +159,7 @@ module CordraRestClient
 		# rw_data: two arrays containing ids of users getting r/w persmissions
 		# credentials: username and password for authentication
 		def self.set_premissions(api_url, id, rw_data, credentials)
-			conn = Faraday.new(:url => api_url)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
 
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.put do |req|
@@ -181,7 +181,7 @@ module CordraRestClient
 		# rw_data: two arrays containing ids of users getting r/w persmissions
 		# credentials: username and password for authentication
 		def self.get_acl(api_url, id, rw_data, credentials)
-			conn= Faraday.new(:url => api_url)
+			conn= Faraday.new(:url => api_url, :ssl => {:verify => false})
 			conn.basic_auth(credentials["username"], credentials["password"])
 			response = conn.get do |req|
 				req.url "/acls/#{id}"
@@ -214,7 +214,7 @@ module CordraRestClient
 		# data: data of the event to process (not all methods required it)
 		# credentials: username and password for authentication
 		def self.call_instance_method(api_url, id, method_name, data, credentials)
-			conn = Faraday.new(:url => api_url)
+			conn = Faraday.new(:url => api_url, :ssl => {:verify => false})
 			unless credentials.nil?
 				conn.basic_auth(credentials["username"], credentials["password"])
 			end
